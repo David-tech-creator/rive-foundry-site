@@ -24,7 +24,7 @@ export const CONTACT_EMAIL = "david@rive-foundry.com"
 export const EMINEON_URL = "https://www.emineon.com"
 
 /** Bump when site content changes; feeds sitemap lastModified and dateModified. */
-export const CONTENT_UPDATED = "2026-11-17"
+export const CONTENT_UPDATED = "2026-11-18"
 
 export const SITE = {
   url: SITE_URL,
@@ -101,7 +101,7 @@ export const KEYWORDS = [
   "Lodestar camera assistant",
   "Neonduck",
   "Emineon",
-  "Emineon OS",
+  "Haystack OS",
   "Rive Foundry",
   "Romandy CTO",
   "Haystack tech recruitment",

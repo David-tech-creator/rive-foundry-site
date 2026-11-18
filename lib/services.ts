@@ -157,7 +157,7 @@ export const SERVICES: Service[] = [
         proof: [
           { slug: "lodestar", line: "An iPhone and iPad app that sets up a Sony camera from one sentence and takes the shot." },
           { slug: "retouch-studio", line: "A web app that retouches a whole photo shoot at once." },
-          { slug: "emineon-os", line: "An AI-native ATS and CRM for recruiters, built from scratch." },
+          { slug: "haystack-os", line: "The ATS and CRM my recruitment agency runs on, with Claude reading CVs and drafting the paperwork." },
           { slug: "babytalk", line: "An iOS app that tells bedtime stories in a parent's voice." },
         ],
         faq: [
@@ -193,7 +193,7 @@ export const SERVICES: Service[] = [
         proof: [
           { slug: "lodestar", line: "Une application iPhone et iPad qui règle un appareil photo Sony à partir d'une phrase et prend la photo." },
           { slug: "retouch-studio", line: "Une application web qui retouche toute une séance photo d'un coup." },
-          { slug: "emineon-os", line: "Un ATS et CRM pensé pour l'IA, destiné aux recruteurs, construit de zéro." },
+          { slug: "haystack-os", line: "L'ATS et CRM de mon agence de recrutement, où Claude lit les CV et rédige les documents." },
           { slug: "babytalk", line: "Une application iOS qui raconte des histoires du soir avec la voix d'un parent." },
         ],
         faq: [
@@ -237,7 +237,7 @@ export const SERVICES: Service[] = [
           { slug: "dbrain", line: "My self-hosted memory: records stored word for word and served to AI assistants over MCP." },
           { slug: "lightbox", line: "An MCP server that lets an assistant browse my photo library." },
           { slug: "lodestar", line: "It started as an MCP server with eight tools that drove a Sony camera over USB." },
-          { slug: "emineon-os", line: "A recruiting tool with a read-only MCP server." },
+          { slug: "haystack-os", line: "A recruiting tool with a 51-tool MCP server that reads and writes, behind scoped tokens." },
         ],
         faq: [
           { q: "What is MCP?", a: "The Model Context Protocol is an open standard for connecting AI assistants to tools and data. One server can be used by any assistant that supports it." },
@@ -274,7 +274,7 @@ export const SERVICES: Service[] = [
           { slug: "dbrain", line: "Ma mémoire auto-hébergée : des données conservées mot pour mot et servies aux assistants IA via MCP." },
           { slug: "lightbox", line: "Un serveur MCP qui permet à un assistant de parcourir ma photothèque." },
           { slug: "lodestar", line: "Le projet a commencé comme un serveur MCP de huit outils qui pilotait un appareil Sony en USB." },
-          { slug: "emineon-os", line: "Un outil de recrutement avec un serveur MCP en lecture seule." },
+          { slug: "haystack-os", line: "Un outil de recrutement avec un serveur MCP de 51 outils, en lecture et en écriture, derrière des jetons à portée limitée." },
         ],
         faq: [
           { q: "Qu'est-ce que MCP ?", a: "Le Model Context Protocol est un standard ouvert pour connecter des assistants IA à des outils et à des données. Un même serveur fonctionne avec tous les assistants compatibles." },

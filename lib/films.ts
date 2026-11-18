@@ -56,11 +56,6 @@ export const FILMS: Record<string, Film> = {
       "Lightbox on generated photos: keep scores on the timeline, review mode with the AI's reason, and three frames of one burst compared.",
     note: "Filmed on a local copy with made-up data and generated photos.",
   },
-  "emineon-os": {
-    slug: "emineon-os",
-    seconds: 12,
-    description: "Emineon OS: the AI copilot, the Create a Job wizard with Smart Intake, and the channels a job gets published to.",
-  },
   emineon: {
     slug: "emineon",
     seconds: 8,

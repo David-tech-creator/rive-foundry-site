@@ -41,6 +41,8 @@ const nextConfig = {
       { source: "/work/daffy", destination: "/work/neonduck", permanent: true },
       { source: "/work/bicraw", destination: "/work", permanent: true },
       { source: "/work/sibion-ai", destination: "/work", permanent: true },
+      // Emineon OS was rebuilt as Haystack OS.
+      { source: "/work/emineon-os", destination: "/work/haystack-os", permanent: true },
       // The 77 concept became Emineon.
       { source: "/work/seventy-seven", destination: "/work/emineon", permanent: true },
     ]
