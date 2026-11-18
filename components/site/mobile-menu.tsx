@@ -28,9 +28,13 @@ export function MobileMenu({ items }: { items: Item[] }) {
         el.querySelector("summary")?.focus()
       }
     }
-    // keyboard focus leaving the open menu closes it, so it never covers what has focus
+    // keyboard focus leaving the open menu closes it, so it never covers what has focus.
+    // Only when focus lands somewhere: Safari does not focus a tapped link, so a tap
+    // on a menu item blurs the summary to nothing, and closing then hid the link
+    // before its click arrived (the menu items did nothing on iPhones).
     const onFocusOut = (e: FocusEvent) => {
-      if (el.open && !el.contains(e.relatedTarget as Node | null)) close()
+      const to = e.relatedTarget as Node | null
+      if (el.open && to && !el.contains(to)) close()
     }
     document.addEventListener("pointerdown", onPointer)
     document.addEventListener("keydown", onKey)

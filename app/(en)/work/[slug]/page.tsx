@@ -158,6 +158,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                       <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   </Magnetic>
+                  {p.urlNote ? <p className="mt-3 text-sm text-muted-foreground md:text-right">{p.urlNote}</p> : null}
                 </div>
               ) : null}
             </div>
@@ -219,6 +220,33 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                   <p key={i}>{para}</p>
                 ))}
               </div>
+
+              {p.screens?.length ? (
+                <section aria-labelledby="screens-title" className="mt-20">
+                  <h2 id="screens-title" className="kicker">
+                    Screens
+                  </h2>
+                  {p.screensNote ? <p className="mt-3 text-sm text-muted-foreground">{p.screensNote}</p> : null}
+                  <div className="mt-6 space-y-12">
+                    {p.screens.map((s) => (
+                      <figure key={s.src}>
+                        <div className="overflow-hidden border border-line bg-surface">
+                          <Image
+                            quality={85}
+                            src={s.src}
+                            alt={s.alt}
+                            width={s.width}
+                            height={s.height}
+                            sizes="(min-width: 768px) 56vw, 100vw"
+                            className="h-auto w-full"
+                          />
+                        </div>
+                        <figcaption className="mt-3 text-sm text-muted-foreground">{s.caption}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
 
               <section aria-labelledby="built-title" className="mt-20">
                 <h2 id="built-title" className="kicker">

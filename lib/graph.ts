@@ -43,10 +43,16 @@ export type Product = {
   url?: string
   /** Button text for url when "Visit <host>" would show a raw hosting address. */
   urlLabel?: string
+  /** One short line under the button, e.g. when the link only opens a sign-in page. */
+  urlNote?: string
   /** YYYY or YYYY-MM; omitted where a date would say too much */
   started?: string
   /** hero image under /public/work/<slug>/ */
   image: string
+  /** Screenshots of the real interface, shown under the story (files in /public/work/<slug>/). */
+  screens?: Array<{ src: string; alt: string; caption: string; width: number; height: number }>
+  /** One line under the Screens heading, e.g. that the data is made up. */
+  screensNote?: string
   imageAlt: string
   /** 0..1, how central in the graph (node size, order) */
   weight: number
@@ -439,8 +445,21 @@ export const PRODUCTS: Product[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL (Neon) + pgvector", "Clerk", "Vercel Blob", "Vercel", "Claude Agent SDK", "Voyage AI", "Resend", "MCP", "Vitest"],
     platforms: ["Web", "MCP", "Worker on a self-hosted NAS"],
     themes: ["agentic-ai", "mcp-tool-use", "grounding", "human-in-the-loop", "self-hosting", "tech-talent"],
+    url: "https://app.haystack.agency",
+    urlNote: "Sign-in only: the tool is private.",
     started: "2025-05",
     image: img("haystack-os"),
+    screensNote: "Every person, company and CV in these screens is made-up demo data.",
+    screens: [
+      { src: "/work/haystack-os/screen-01-home.webp", alt: "Haystack OS home page with one open sprint for a Senior Data Engineer, a missing shortlist note under Needs attention, two tasks due today and a recent activity feed.", caption: "The home page shows the open sprint with its pipeline counts, what needs attention, the tasks due today and recent activity, with Claude's part in each change marked.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-02-candidate.webp", alt: "Candidate profile of Sophie Marchand, Lead Data Engineer in Geneva, with a summary, sprint stage, experience and a details column of skills, languages and permit, each tagged Claude.", caption: "A candidate profile filled in by Claude from an uploaded CV, with a written summary, work history and details, each marked where Claude supplied the value.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-04-matches.webp", alt: "Matches table for the sprint with candidates in rows, scorecard criteria in columns, coloured Meets, Partly and No evidence verdicts, locations and Add to pipeline buttons.", caption: "The Matches tab lists the people we already know against every scorecard criterion, with a verdict of Meets, Partly or No evidence for each, plus distance and permit.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-04b-evidence.webp", alt: "Popover over the Matches table for Warehouse modelling in dbt, showing what good looks like, two quotes from the CV and a sentence explaining the verdict.", caption: "Opening a verdict shows the quoted lines from the CV that support it and a short explanation of how they meet the criterion.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-05-pipeline.webp", alt: "Kanban board with stages Sourced to Offer, showing Am\u00e9lie Roux in Contacted, Lukas Brenner in Screening and Sophie Marchand in Shortlisted.", caption: "The sprint pipeline board shows each person at their stage, with their next step, days in stage and whether a shortlist note exists.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-06-shortlist-note.webp", alt: "Side panel for Sophie Marchand with a shortlist note under the headings What they have built, Where they would shine and What we would still check, and a Shared with client switch turned off.", caption: "A shortlist note drafted by Claude and saved in the candidate's panel, in three parts, with sharing to the client switched off.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-07-search.webp", alt: "Candidates list in Skills and experience mode for the query someone who builds cloud warehouses for banks, with each result showing quoted evidence lines and their source.", caption: "Searching candidates by skills and experience with a plain sentence returns people with the lines from their profile or CV that answer it, and what the record does not show.", width: 1600, height: 1000 },
+      { src: "/work/haystack-os/screen-08b-approval.webp", alt: "Assistant panel on a candidate profile showing a card that proposes creating a task due 19 Nov 2026, with Show details, Decline and Approve buttons.", caption: "When proposing changes is switched on, the assistant asks before it acts, with a card that states the change in words and waits for approval.", width: 1600, height: 1000 },
+    ],
     imageAlt: "Azure illustration of an astronaut connecting constellations of profile cards into a single map",
     weight: 0.84,
     schemaType: "WebApplication",
