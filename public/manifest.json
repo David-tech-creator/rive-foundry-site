@@ -1,0 +1,35 @@
+{
+  "name": "David Vinkenroye",
+  "short_name": "Vinkenroye",
+  "description": "I build AI products in Geneva: AI agents and automation, MCP servers, private AI and iPhone apps.",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1F1E22",
+  "theme_color": "#1F1E22",
+  "lang": "en",
+  "categories": [
+    "technology",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+/* Mission log particle stage. Imported by ParticleStage. */
+
+.pf-stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* the large viewport: the phone toolbars showing or hiding never stretch it */
+  height: 100vh;
+  height: 100lvh;
+  z-index: -1;
+  pointer-events: none;
+  contain: strict;
+}
+
+.pf-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* While the preloader runs, the field sits above the page (under the counter). */
+html[data-preloading] .pf-stage {
+  z-index: 45;
+}
+
+/* Static fallbacks are hidden once the WebGL field is running. */
+html[data-particles="on"] .pf-static {
+  display: none;
+}
+
+/*
+ * Graph labels: real links in normal flow by default (no JS, reduced motion,
+ * no WebGL). With the field running they float over their projected stars.
+ */
+html[data-particles="on"] [data-graph-label] {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  will-change: transform;
+  opacity: var(--graph-ready, 0);
+  transition: opacity 0.3s linear;
+  z-index: 2;
+}
+
+/* Not formed yet: no pointer hits, but the links stay in the tab order;
+   focusing one scrolls the constellation into place (GraphLabel onFocus). */
+html[data-particles="on"]:not([data-graph-active]) [data-graph-label] {
+  pointer-events: none;
+}
+html[data-particles="on"] [data-graph-label]:focus-within {
+  opacity: 1;
+}
+
+/* The label's own content sits beside its star, not on top of it. */
+html[data-particles="on"] [data-graph-label] > .pf-label-inner {
+  display: inline-block;
+  transform: translate(calc(var(--node-r, 6px) + 10px), -50%);
+  white-space: nowrap;
+}
+@media (max-aspect-ratio: 9/10) {
+  html[data-particles="on"] [data-graph-label] > .pf-label-inner {
+    transform: translate(calc(var(--node-r, 6px) + 16px), -50%);
+  }
+}
+
+/* Labels on another side of their star (constellation names keep clear of
+   their lines). The wide graph layout runs on landscape screens from
+   1280x560 up, the compact one everywhere else (GraphLayoutSwitch). */
+@media (min-aspect-ratio: 9/10) and (min-width: 1280px) and (min-height: 560px) {
+  html[data-particles="on"] [data-side-wide="left"] > .pf-label-inner {
+    transform: translate(calc(-100% - var(--node-r, 6px) - 10px), -50%);
+  }
+  html[data-particles="on"] [data-side-wide="above"] > .pf-label-inner {
+    transform: translate(-50%, calc(-100% - var(--node-r, 6px) - 4px));
+  }
+  html[data-particles="on"] [data-side-wide="below"] > .pf-label-inner {
+    transform: translate(-50%, calc(var(--node-r, 6px) + 4px));
+  }
+}
+@media (max-aspect-ratio: 9/10), (max-width: 1279px), (max-height: 559px) {
+  html[data-particles="on"] [data-side-compact="left"] > .pf-label-inner {
+    transform: translate(calc(-100% - var(--node-r, 6px) - 12px), -50%);
+  }
+  html[data-particles="on"] [data-side-compact="above"] > .pf-label-inner {
+    transform: translate(-50%, calc(-100% - var(--node-r, 6px) - 4px));
+  }
+  html[data-particles="on"] [data-side-compact="below"] > .pf-label-inner {
+    transform: translate(-50%, calc(var(--node-r, 6px) + 4px));
+  }
+}
+
+/*
+ * Lac Léman map labels: decorative, shown only on the running field, where
+ * the engine moves each one onto its landmark. They fade in with the map.
+ */
+html:not([data-particles="on"]) .leman-labels {
+  display: none;
+}
+html[data-particles="on"] [data-leman-label] {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  pointer-events: none;
+  will-change: transform;
+  opacity: var(--leman-ready, 0);
+  transition: opacity 0.3s linear;
+  z-index: 1;
+}
+html[data-particles="on"] [data-leman-label] > .pf-label-inner {
+  display: inline-block;
+  white-space: nowrap;
+  transform: translate(var(--gap, 10px), -50%);
+}
+html[data-particles="on"] [data-leman-label][data-side="left"] > .pf-label-inner {
+  transform: translate(calc(-100% - var(--gap, 10px)), -50%);
+}
+html[data-particles="on"] [data-leman-label][data-side="above"] > .pf-label-inner {
+  transform: translate(-50%, calc(-100% - var(--gap, 10px)));
+}
+html[data-particles="on"] [data-leman-label][data-side="below"] > .pf-label-inner {
+  transform: translate(-50%, var(--gap, 10px));
+}
+/* phones: only the four main landmarks (the engine drops the two trails too) */
+.leman-labels .leman-short {
+  display: none;
+}
+@media (max-aspect-ratio: 9/10) and (max-width: 599px) {
+  html[data-particles="on"] .leman-labels .leman-minor,
+  html[data-particles="on"] .leman-labels .leman-full {
+    display: none;
+  }
+  html[data-particles="on"] .leman-labels .leman-short {
+    display: inline;
+  }
+}
+
+.pf-static-leman {
+  display: block;
+  height: auto;
+}
+
+/* Static portrait: halftone-dot rendering of the cutout. */
+.pf-static-portrait {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.pf-static-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pf-static-graph a:hover text,
+.pf-static-graph a:focus-visible text {
+  fill: #4DA3FF;
+}
+
+.pf-static-graph a:focus-visible circle,
+.pf-static-graph a:hover circle {
+  fill: #4da3ff;
+}

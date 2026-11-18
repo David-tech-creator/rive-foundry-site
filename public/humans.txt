@@ -1,0 +1,15 @@
+/* TEAM */
+Builder: David Vinkenroye
+Site: https://www.rive-foundry.com
+Location: Geneva, Switzerland
+LinkedIn: https://www.linkedin.com/in/david-vinkenroye-1a479468/
+GitHub: https://github.com/David-tech-creator
+Contact: https://www.rive-foundry.com/#contact
+
+/* SITE */
+Last update: 2026/10/25
+Language: English
+Standards: HTML5, CSS3, WebGL, JSON-LD, llms.txt
+Components: Next.js 15, React 19, TypeScript, Tailwind CSS, three.js, Lenis
+Fonts: Inter Tight
+For machines: https://www.rive-foundry.com/llms.txt and https://www.rive-foundry.com/llms-full.txt

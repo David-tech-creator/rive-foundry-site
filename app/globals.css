@@ -1,0 +1,712 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Dark only. Hex tokens for hand-written CSS, HSL triplets for the shadcn
+ * names Tailwind maps in tailwind.config.ts. Keep both in sync with
+ * SITE.colors in lib/site.ts.
+ */
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --ink: #1f1e22;
+    --surface: #26252a;
+    --text: #ededef;
+    --muted: #8b8a92;
+    --line: rgba(255, 255, 255, 0.08);
+    --azure: #007fff;
+    --azure-light: #4da3ff;
+
+    --background: 255 6% 13%;
+    --foreground: 240 6% 93%;
+    --card: 252 6% 16%;
+    --card-foreground: 240 6% 93%;
+    --popover: 252 6% 16%;
+    --popover-foreground: 240 6% 93%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 252 6% 16%;
+    --secondary-foreground: 240 6% 93%;
+    --muted: 252 6% 16%;
+    --muted-foreground: 248 4% 56%;
+    --accent: 252 6% 16%;
+    --accent-foreground: 240 6% 93%;
+    --destructive: 0 72% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.12;
+    --ring: 210 100% 50%;
+    --radius: 0rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  /*
+   * The background lives on <html> only. The particle canvas is fixed at
+   * z-index -1: an opaque body background would paint over it.
+   */
+  html {
+    /* anchors and focused sections clear the fixed header */
+    scroll-padding-top: 4.5rem;
+    background: var(--ink);
+    color: var(--text);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: transparent;
+    color: var(--text);
+    font-weight: 300;
+    font-feature-settings: "ss01" 1, "cv11" 1;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--azure);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--azure-light);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    /* notched phones in landscape: keep text out of the camera housing */
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-left: max(2.5rem, env(safe-area-inset-left));
+      padding-right: max(2.5rem, env(safe-area-inset-right));
+    }
+  }
+
+  /* Touch screens: small links grow to a 44px target without changing how
+     they look; mouse and trackpad layouts stay as they were. */
+  @media (pointer: coarse) {
+    .tap {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    /* links inside a sentence: taller hit area, same line box */
+    .tap-inline {
+      padding-block: 12px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-links > li {
+      margin-top: 0 !important;
+    }
+  }
+
+  .kicker {
+    @apply text-xs uppercase tracking-[0.16em] text-muted-foreground;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .link-quiet {
+    @apply text-muted-foreground transition-colors duration-200 hover:text-text;
+  }
+
+  .link-line {
+    @apply underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-azure-light hover:text-text;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-3 border border-line px-5 py-3 text-sm text-text transition-colors duration-200;
+    font-weight: 400;
+  }
+  .btn:hover {
+    border-color: rgba(77, 163, 255, 0.6);
+  }
+  /* #0066CC keeps white 14px text above 4.5:1 (WCAG AA); azure stays the accent. */
+  .btn-solid {
+    @apply btn text-white;
+    background: #0066cc;
+    border-color: #0066cc;
+  }
+  .btn-solid:hover {
+    background: #0073e6;
+    border-color: #0073e6;
+  }
+
+  .chip {
+    @apply inline-flex items-center border border-line px-2.5 py-1 text-xs text-muted-foreground;
+    font-weight: 400;
+  }
+
+  .hairline {
+    @apply border-t border-line;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: max(1rem, env(safe-area-inset-left));
+    top: max(1rem, env(safe-area-inset-top));
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    background: var(--azure);
+    color: #fff;
+    transform: translateY(-200%);
+    transition: transform 0.15s ease;
+  }
+  .skip-link:focus {
+    transform: none;
+  }
+}
+
+/* Site header (components/site/header-shell.tsx): transparent at the top of
+   the page, a slim blurred bar below it. It never hides. */
+.site-header {
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+.site-header .header-bar {
+  height: 5rem;
+  transition: height 0.3s ease;
+}
+.site-header[data-state="shown"] {
+  background: hsl(var(--background) / 0.7);
+  border-bottom-color: hsl(var(--border));
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.site-header[data-state="shown"] .header-bar {
+  height: 3.5rem;
+}
+@media (pointer: coarse) {
+  .site-header[data-state="shown"] .header-bar {
+    height: 4rem;
+  }
+}
+/* the active page: full text colour and a small azure dot */
+.site-header .nav-link[aria-current="page"] {
+  color: var(--text);
+}
+/* the dot hangs outside the link, so the active page does not push the nav sideways */
+.site-header .nav-link {
+  position: relative;
+}
+.site-header .nav-link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: 6px;
+  transform: translateY(-50%);
+  border-radius: 9999px;
+  background: var(--azure-light);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mission log: sections that drive the particle field (see components/      */
+/* particles/README.md). Without the field the page is a normal document.     */
+/* -------------------------------------------------------------------------- */
+
+.fm {
+  position: relative;
+  padding-block: 6rem;
+}
+
+.fm-stage {
+  display: flex;
+  align-items: center;
+}
+
+/* Copy that fades in once its shape has formed. --ready is set per section to
+   var(--<formation>-ready, 1); without the engine it resolves to 1. */
+.fm-copy {
+  opacity: var(--ready, 1);
+  transform: translate3d(0, calc((1 - var(--ready, 1)) * 18px), 0);
+  will-change: opacity, transform;
+}
+
+html[data-particles="on"] .fm {
+  min-height: var(--fm-h, 170vh);
+  padding-block: 0;
+}
+
+html[data-particles="on"] .fm-stage {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* Portrait-orientation screens: the shape sits in the upper part of the
+   screen, so the copy goes to the lower half. */
+@media (max-aspect-ratio: 9/10) {
+  html[data-particles="on"] .fm-stage {
+    align-items: flex-end;
+    padding-bottom: 9vh;
+  }
+}
+
+@media (max-aspect-ratio: 9/10) {
+  html[data-particles="on"] .fm-hero .fm-stage {
+    padding-bottom: 4vh;
+  }
+  html[data-particles="on"] .fm-stage {
+    padding-bottom: calc(9vh + env(safe-area-inset-bottom));
+  }
+}
+
+/* Portrait phones: the sky is narrow, so the map drops its intro and uses
+   small labels. Portrait tablets keep both (there is room under the heading). */
+@media (max-aspect-ratio: 9/10) and (max-width: 599px) {
+  html[data-particles="on"] .fm-hero .kicker,
+  html[data-particles="on"] .graph-intro {
+    display: none;
+  }
+  html[data-particles="on"] .graph-labels [data-graph-label] a {
+    font-size: 12px;
+  }
+  html[data-particles="on"] .graph-labels [data-graph-label="david-vinkenroye"] a {
+    font-size: 13px;
+  }
+}
+
+/* Portrait phones: a pinned section only has the screen below its shape, and
+   Safari's bars take a quarter of it. Long copy is trimmed to what fits; the
+   full text stays in the page for search, larger screens and the no-WebGL
+   layout. The hero copy is set a little tighter. */
+@media (max-aspect-ratio: 9/10) and (max-width: 599px) {
+  html[data-particles="on"] .fm-phone-hide {
+    display: none;
+  }
+  html[data-particles="on"] .fm-copy h2 {
+    font-size: 2rem;
+  }
+  html[data-particles="on"] .fm-copy li > a {
+    padding-block: 0.7rem;
+  }
+  html[data-particles="on"] .fm-hero h1 {
+    font-size: 2.6rem;
+  }
+  html[data-particles="on"] .fm-hero .fm-copy p {
+    margin-top: 0.6rem;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  html[data-particles="on"] .fm-hero .fm-copy .hero-headline {
+    font-size: 1.125rem;
+  }
+  html[data-particles="on"] .fm-hero .fm-copy .mt-7 {
+    margin-top: 1rem;
+  }
+}
+
+/* Short portrait phones (iPhone SE class): tighter copy, so each shape keeps
+   some room above it. The engine fits the shapes into whatever is left. */
+@media (max-aspect-ratio: 9/10) and (max-height: 720px) {
+  html[data-particles="on"] .fm-copy h2 {
+    font-size: 1.875rem;
+  }
+  html[data-particles="on"] .fm-copy .mt-6 {
+    margin-top: 0.875rem;
+  }
+  html[data-particles="on"] .fm-copy .mt-8 {
+    margin-top: 1.25rem;
+  }
+  html[data-particles="on"] .fm-copy p.text-lg {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  html[data-particles="on"] .fm-copy li > a {
+    padding-block: 0.625rem;
+  }
+  html[data-particles="on"] .fm-hero h1 {
+    font-size: 2.5rem;
+  }
+  html[data-particles="on"] .fm-hero .fm-stage {
+    padding-bottom: 3vh;
+  }
+}
+
+/* Phones held sideways (and other very short screens): the copy is taller
+   than the screen, so it scrolls normally instead of pinning, shows without
+   waiting for its shape, and the shape forms beside it. */
+@media (orientation: landscape) and (max-height: 559px) {
+  html[data-particles="on"] .fm-stage {
+    position: relative;
+    min-height: 0;
+    padding-block: 5.5rem 4rem;
+  }
+  html[data-particles="on"] .fm-copy {
+    opacity: 1;
+    transform: none;
+  }
+  html[data-particles="on"] .fm-hero .fm-stage {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+  html[data-particles="on"] .fm-hero h1 {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+  html[data-particles="on"] .fm-hero .fm-copy {
+    max-width: 30rem;
+  }
+  /* the compact star map was spaced for 12px labels */
+  html[data-particles="on"] .graph-labels [data-graph-label] a {
+    font-size: 12px;
+  }
+}
+
+html[data-particles="on"] .fm-flow {
+  min-height: var(--fm-h, 140vh);
+  padding-block: 18vh;
+}
+/* the last section: no long empty run between the form and the footer */
+html[data-particles="on"] #contact.fm-flow {
+  min-height: 0;
+  padding-bottom: 8rem;
+}
+
+/* Contact box: the particles draw its outline; without them, a hairline. */
+.contact-box {
+  border: 1px solid var(--line);
+}
+html[data-particles="on"] .contact-box {
+  border-color: transparent;
+}
+
+/* Graph labels: product names floating on their stars. */
+.graph-labels [data-graph-label] a {
+  @apply text-sm text-text/80 transition-colors duration-200;
+  font-weight: 400;
+  text-shadow: 0 0 12px rgba(31, 30, 34, 0.9);
+}
+/* constellation names: quiet uppercase, not links */
+.graph-labels .graph-hub span {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azure-light);
+  opacity: 0.85;
+  text-shadow: 0 0 12px rgba(31, 30, 34, 0.9);
+}
+/* on the sky: a little patch of page colour so no line runs through the letters */
+html[data-particles="on"] .graph-labels .graph-hub span {
+  display: inline-block;
+  padding: 1px 5px 1px 6px;
+  border-radius: 2px;
+  background: rgba(31, 30, 34, 0.86);
+}
+.graph-labels [data-graph-label] a:hover,
+.graph-labels [data-graph-label] a:focus-visible {
+  color: var(--azure-light);
+}
+.graph-labels [data-graph-label="david-vinkenroye"] a {
+  @apply text-base text-text;
+}
+/* Lac Léman map: landmark names in the quiet kicker style */
+.leman-labels .pf-label-inner {
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: 0 0 10px rgba(31, 30, 34, 0.95);
+}
+/* Touch: each floating label is a 44px tall target, centred on its star. */
+@media (pointer: coarse) {
+  html[data-particles="on"] .graph-labels [data-graph-label] a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* No field: the SVG map carries the picture and its links. On phones its
+   labels would be too small to read, so the map drops its text and this list
+   shows as a plain visible list below it instead. */
+html:not([data-particles="on"]) .graph-labels {
+  display: none;
+}
+@media (max-width: 639px) {
+  html:not([data-particles="on"]) .graph-labels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin-top: 2rem;
+  }
+  html:not([data-particles="on"]) .graph-labels [data-graph-label="david-vinkenroye"] {
+    grid-column: 1 / -1;
+  }
+  .pf-static-graph .sg-label {
+    display: none;
+  }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .pf-static-graph .sg-theme {
+    display: none;
+  }
+}
+
+/* No field: the static map section sizes to its content. */
+html:not([data-particles="on"]) [data-formation="graph"] {
+  padding-bottom: 2rem;
+}
+
+/* While the selected-work gallery is on screen the sky pans to the star of
+   the middle card; the floating labels step aside so they never sit on top
+   of the cards. */
+html[data-work-focus] .graph-labels [data-graph-label] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden;
+}
+
+/* Phones: the cards cover the full width, so the sky steps back behind them. */
+.pf-stage {
+  transition: opacity 0.6s ease;
+}
+@media (max-aspect-ratio: 9/10), (max-width: 767px), (max-height: 559px) {
+  html[data-work-focus] .pf-stage {
+    opacity: 0.16;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fm-copy {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Architecture diagrams (components/site/dbrain-diagram.tsx): data drifts along the lines. */
+.diagram-flow {
+  animation: diagram-flow 2.4s linear infinite;
+}
+@keyframes diagram-flow {
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .diagram-flow {
+    animation: none;
+  }
+}
+
+/* Logbook posts: rendered Markdown (lib/logbook.ts) */
+.logbook-prose {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: hsl(var(--muted-foreground));
+}
+.logbook-prose > * + * {
+  margin-top: 1.25em;
+}
+.logbook-prose h2,
+.logbook-prose h3,
+.logbook-prose h4 {
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: 2.2em;
+}
+.logbook-prose h2 {
+  font-size: 1.75rem;
+}
+.logbook-prose h3 {
+  font-size: 1.35rem;
+}
+.logbook-prose h4 {
+  font-size: 1.15rem;
+}
+.logbook-prose strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.logbook-prose a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--azure-light);
+  text-underline-offset: 0.2em;
+}
+.logbook-prose a:hover {
+  color: var(--azure-light);
+}
+.logbook-prose ul,
+.logbook-prose ol {
+  padding-left: 1.25em;
+}
+.logbook-prose ul {
+  list-style: disc;
+}
+.logbook-prose ol {
+  list-style: decimal;
+}
+.logbook-prose li + li {
+  margin-top: 0.4em;
+}
+.logbook-prose li::marker {
+  color: var(--azure-light);
+}
+.logbook-prose blockquote {
+  border-left: 2px solid var(--azure-light);
+  padding-left: 1.1em;
+  color: var(--text);
+}
+.logbook-prose code {
+  font-size: 0.9em;
+  color: var(--text);
+  background: var(--surface);
+  padding: 0.1em 0.35em;
+  /* long identifiers and paths would otherwise widen the page on phones */
+  overflow-wrap: anywhere;
+}
+.logbook-prose pre {
+  overflow-x: auto;
+  background: var(--surface);
+  padding: 1em 1.2em;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.logbook-prose pre code {
+  background: none;
+  padding: 0;
+  overflow-wrap: normal;
+}
+.logbook-prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Portrait easter egg (components/site/astronaut-film.tsx): an invisible button
+   over the particle portrait, right of the copy, or above it on tall screens. */
+.astro-hit {
+  position: absolute;
+  top: 12vh;
+  bottom: 8vh;
+  right: 4vw;
+  width: 38vw;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.astro-hit:focus-visible {
+  outline: 2px solid var(--azure-light);
+  outline-offset: 4px;
+}
+
+@media (max-aspect-ratio: 9/10) {
+  .astro-hit {
+    top: 9vh;
+    bottom: auto;
+    left: 12vw;
+    right: 12vw;
+    width: auto;
+    height: 36vh;
+  }
+}
+
+.astro-film {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  background: #1f1e22;
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+  overscroll-behavior: contain;
+  transition: opacity 900ms ease;
+}
+
+.astro-film[data-phase="film"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The helmet and the astronaut stay right of centre through the whole film. */
+.astro-film video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+
+/* Tall screens: the whole frame, moved by the camera in astronaut-film.tsx.
+   Its edges melt into the dark so no band shows above and below. */
+.astro-film[data-tall] video {
+  right: auto;
+  bottom: auto;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  transform-origin: 0 0;
+  will-change: transform;
+  --melt: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  -webkit-mask-image: var(--melt);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--melt);
+  mask-composite: intersect;
+}
+
+.astro-film button {
+  position: absolute;
+  left: 50%;
+  bottom: calc(4vh + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  background: rgb(0 0 0 / 0.5);
+}

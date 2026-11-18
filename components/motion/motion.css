@@ -1,0 +1,122 @@
+/* Motion primitives: preloader, cursor, magnetic, Lenis. */
+
+/* ---------- Preloader ---------- */
+.pl-root {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: clamp(20px, 4vw, 48px);
+  background: #1f1e22;
+  color: #ededef;
+  pointer-events: none;
+  transition:
+    background-color 0.6s ease,
+    opacity 0.7s ease,
+    visibility 0s linear 0.7s;
+  /* failsafe: never trap the page if scripts do not run */
+  animation: pl-failsafe 0.6s ease 6s forwards;
+}
+
+.pl-root.pl-see-through {
+  background: transparent;
+}
+
+.pl-root.pl-done {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.pl-count {
+  font-size: clamp(56px, 11vw, 168px);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.pl-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8b8a92;
+}
+
+.pl-bar {
+  width: clamp(96px, 16vw, 200px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.pl-bar > span {
+  display: block;
+  height: 100%;
+  background: #007fff;
+  transform-origin: left center;
+  transform: scaleX(var(--pl-progress, 0));
+}
+
+@keyframes pl-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Phones and tablets skip the counter: the hero text paints straight away
+   (it is the LCP element) and the field forms the portrait behind it. Keep in
+   sync with SKIP_QUERY in Preloader.tsx. */
+@media (prefers-reduced-motion: reduce), (max-width: 767px), (pointer: coarse) {
+  .pl-root {
+    display: none;
+  }
+}
+
+/* ---------- Cursor ---------- */
+.cur-trail {
+  position: fixed;
+  inset: 0;
+  /* a canvas keeps its pixel size unless told otherwise; on retina that is 2x the viewport */
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+/* ---------- Magnetic ---------- */
+.mg-wrap {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---------- Lenis ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.pl-count::after {
+  content: attr(data-count);
+}
+.pl-label::after {
+  content: attr(data-label);
+}
