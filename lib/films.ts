@@ -56,6 +56,14 @@ export const FILMS: Record<string, Film> = {
       "Lightbox on generated photos: keep scores on the timeline, review mode with the AI's reason, and three frames of one burst compared.",
     note: "Filmed on a local copy with made-up data and generated photos.",
   },
+  "haystack-os": {
+    slug: "haystack-os",
+    seconds: 14,
+    description:
+      "The Haystack OS app with demo data: the home page with the open sprint, a candidate profile filled in by Claude, the matches table with per-criterion verdicts and the evidence behind one of them, the pipeline board and a shortlist note.",
+    note: "Filmed on the live app with made-up demo data.",
+    published: "2026-11-19",
+  },
   emineon: {
     slug: "emineon",
     seconds: 8,
