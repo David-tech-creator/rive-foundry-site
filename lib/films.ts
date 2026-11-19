@@ -113,6 +113,13 @@ export const FILMS: Record<string, Film> = {
     note: "Filmed on a local copy with generated sample photos. The retouching in the film is a simple stand-in grade, not the AI model.",
     published: "2026-11-19",
   },
+  "family-recipes": {
+    slug: "family-recipes",
+    seconds: 27,
+    description: "The cookbook opening, the cover swinging open onto its contents and your bookplate, a recipe in evening light with its ribbon and a pencilled note, cook mode, and adding a recipe.",
+    note: "Filmed on a demo copy with a made-up reader and note, and no family recipes or photos.",
+    published: "2026-11-20",
+  },
   babytalk: {
     slug: "babytalk",
     seconds: 11,
