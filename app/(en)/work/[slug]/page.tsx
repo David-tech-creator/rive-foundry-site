@@ -9,6 +9,7 @@ import { CONSTELLATIONS, EDGES, PERSON_ID, PRODUCTS, PRODUCT_SLUGS, getProduct, 
 import { CONTRIBUTOR_ROLE, statusLabel, workJsonLd, workMetadata, workPath } from "@/lib/seo"
 import { FILM_SIZE, filmPaths, getFilm } from "@/lib/films"
 import { ProductFilm } from "@/components/site/product-film"
+import { NeonduckDiagram } from "@/components/site/neonduck-diagram"
 import { DbrainDiagram } from "@/components/site/dbrain-diagram"
 
 export const dynamicParams = false
@@ -192,6 +193,18 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             </div>
           )}
 
+          {p.slug === "neonduck" ? (
+            // the architecture straight under the film: what you just saw, and what runs it
+            <section aria-labelledby="architecture-title" className="wrap mt-16 md:mt-24">
+              <h2 id="architecture-title" className="kicker">
+                How it fits together
+              </h2>
+              <div className="mt-6">
+                <NeonduckDiagram />
+              </div>
+            </section>
+          ) : null}
+
           <div className="wrap mt-16 grid gap-16 md:mt-24 md:grid-cols-12">
             <aside className="md:col-span-4" aria-label="Facts">
               <dl className="divide-y divide-line border-y border-line">
@@ -220,6 +233,18 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                   <p key={i}>{para}</p>
                 ))}
               </div>
+
+              {film?.second ? (
+                <section aria-labelledby="second-film-title" className="mt-20">
+                  <h2 id="second-film-title" className="kicker">
+                    {film.second.title}
+                  </h2>
+                  <div className="mt-6">
+                    <ProductFilm {...filmPaths(p.slug, film.second.name)} label={film.second.description} width={FILM_SIZE.width} height={FILM_SIZE.height} />
+                  </div>
+                  {film.second.note ? <p className="mt-3 text-sm text-muted-foreground">{film.second.note}</p> : null}
+                </section>
+              ) : null}
 
               {p.screens?.length ? (
                 <section aria-labelledby="screens-title" className="mt-20">

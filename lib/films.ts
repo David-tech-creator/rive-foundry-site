@@ -23,6 +23,11 @@ export type Film = {
   smallAspect?: string
   /** Date this film was made, when later than FILMS_PUBLISHED. */
   published?: string
+  /**
+   * A second, shorter film further down the page (for example the product's own
+   * website). Files: film-<name>.mp4, film-<name>-720.mp4, film-<name>-poster.webp.
+   */
+  second?: { name: string; title: string; seconds: number; description: string; note?: string }
 }
 
 export const FILM_SIZE = { width: 1600, height: 1000 } as const
@@ -45,9 +50,17 @@ export const FILMS: Record<string, Film> = {
   },
   neonduck: {
     slug: "neonduck",
-    seconds: 11,
+    seconds: 23,
     description:
-      "The Neonduck site: the hero, then the lunch invite demo, where it checks the calendar and asks before it replies.",
+      "The Neonduck app with demo data: it draws the day as a board, drafts a reply to a lunch invite and waits on an approval card until it is tapped, then finds the trains to Bern.",
+    note: "Filmed on a local copy with made-up people and mail. The trains are real SBB connections.",
+    published: "2026-11-19",
+    second: {
+      name: "site",
+      title: "The site",
+      seconds: 16,
+      description: "The neonduck.io site: its hero film, then the lunch invite example, where it checks the calendar and asks before it replies.",
+    },
   },
   lightbox: {
     slug: "lightbox",
@@ -105,7 +118,7 @@ export function getFilm(slug: string): Film | undefined {
   return FILMS[slug]
 }
 
-export function filmPaths(slug: string) {
-  const base = `/work/${slug}`
-  return { src: `${base}/film.mp4`, small: `${base}/film-720.mp4`, poster: `${base}/film-poster.webp` }
+export function filmPaths(slug: string, name?: string) {
+  const base = `/work/${slug}/film${name ? `-${name}` : ""}`
+  return { src: `${base}.mp4`, small: `${base}-720.mp4`, poster: `${base}-poster.webp` }
 }
