@@ -115,9 +115,9 @@ export const FILMS: Record<string, Film> = {
   },
   "family-recipes": {
     slug: "family-recipes",
-    seconds: 27,
-    description: "The cookbook opening, the cover swinging open onto its contents and your bookplate, a recipe in evening light with its ribbon and a pencilled note, cook mode, and adding a recipe.",
-    note: "Filmed on a demo copy with a made-up reader and note, and no family recipes or photos.",
+    seconds: 30,
+    description: "The opening film and the red block that prints the name, the home page asking what's cooking tonight, a recipe with its method and a note, cook mode, the recipe index and adding a recipe.",
+    note: "Filmed on a demo copy with a made-up reader and note, a neutral name and no albums.",
     published: "2026-11-20",
   },
   babytalk: {
