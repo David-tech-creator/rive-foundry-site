@@ -96,6 +96,7 @@ export type Faq = { q: string; a: string }
 export const PRODUCT_SLUGS = [
   "lodestar",
   "neonduck",
+  "kairo",
   "lightbox",
   "dbrain",
   "haystack-os",
@@ -343,6 +344,48 @@ export const PRODUCTS: Product[] = [
     schemaType: "WebApplication",
     applicationCategory: "LifestyleApplication",
     operatingSystem: "Web",
+  },
+  {
+    slug: "kairo",
+    name: "Kairo",
+    kind: "product",
+    status: "private",
+    oneLiner: "My private AI assistant: my WhatsApp, my health and my day, on my iPhone and by voice.",
+    description:
+      "Kairo is the private AI assistant I built for myself on Claude: it reads and answers my WhatsApp, tracks my meals and health, and talks with me by voice.",
+    story: [
+      "Kairo grew out of Neonduck. Neonduck is the assistant I'm opening up to other people, so it has to stay careful and general. I wanted one that goes all the way for me alone: both my WhatsApp accounts living inside it, my meals and my watch, my mail and calendar, and a voice I can talk to with the phone in my pocket. So I built Kairo, for an audience of one.",
+      "It runs on my own Claude subscription through the Claude Agent SDK, in a container on the NAS at home, right next to Dbrain, my self-hosted memory. Before it answers it looks things up in Dbrain, and it files what it learns back there. Reading is free. Anything that sends, deletes, pays or calls puts a card on my screen, and I tap Allow every single time.",
+      "WhatsApp is the part I use most. I was sick of iPhone dictation mangling my messages, so now I talk and Kairo writes what I meant, in the tone I use in that chat. It can draft a reply from the conversation too, and a new message arrives as a notification that says who wrote and whether it came in on my personal or my business account.",
+      "In November it got its own name and look: a drop of glass as the logo, an iPhone app built on Apple's Liquid Glass, an orb that breathes while we talk, and an icon set made just for it. It lives on my phone and on a server in my flat, not in the App Store.",
+    ],
+    highlights: [
+      "My personal and business WhatsApp, live inside the app: chats, groups, photos, voice notes with transcripts, replies and reactions",
+      "Dictation that writes the message I meant, and drafts in my own voice; nothing goes out until I tap Send",
+      "A notification for every new message, saying who wrote and on which account, and quiet for muted chats",
+      "Voice with the screen locked: a native iPhone call screen on OpenAI's realtime voice that hands the real work to Claude",
+      "Health: meals from a photo with real nutrition tables, plus steps, sleep, weight and calories from my watch and phone",
+      "Two spaces, Personal and Business, with a wall that every tool call passes",
+      "Morning briefings with one-tap actions, a morning AI paper, and a brief before each meeting",
+      "Its own browser I can watch and take over, and phone calls from my number after one approval",
+      "It cleans up after itself: briefings go after a week, the other things it writes on its own after two to four weeks",
+    ],
+    facts: [],
+    stack: ["Node.js (plain ESM)", "Claude Agent SDK", "SQLite", "Playwright", "OpenAI realtime voice (WebRTC)", "Gemini Live", "Swift and SwiftUI", "Metal", "WebKit", "Web Push", "Docker", "Synology NAS", "Cloudflare Tunnel", "MCP"],
+    platforms: ["iOS", "Web (PWA)"],
+    themes: ["agentic-ai", "human-in-the-loop", "self-hosting", "mcp-tool-use"],
+    started: "2026-10",
+    image: img("kairo"),
+    screens: [
+      { src: "/work/kairo/screen-01-places.webp", alt: "Three phone screens of Kairo in dark mode: the home screen with today's events, the WhatsApp chat list with unread counts, and Health with calories eaten and protein as rings.", caption: "The three places I open most: home with today at a glance, my WhatsApp, and Health.", width: 1600, height: 1000 },
+      { src: "/work/kairo/screen-02-moments.webp", alt: "Three phone screens: the morning briefing with the day on an hour timeline, a WhatsApp chat with a drafted reply in the message box, and a week of calories eaten and burned as bars.", caption: "The morning briefing, a reply Kairo drafted in the chat's own tone and left in the box for me, and the week in numbers.", width: 1600, height: 1000 },
+    ],
+    screensNote: "A local copy with made-up people, chats and meals.",
+    imageAlt: "Azure illustration of an astronaut on a rock talking to a floating drop of liquid glass that glows like a voice orb",
+    weight: 0.95,
+    schemaType: "SoftwareApplication",
+    applicationCategory: "LifestyleApplication",
+    operatingSystem: "iOS, Web",
   },
   {
     slug: "dbrain",
@@ -827,6 +870,7 @@ export const PRODUCTS: Product[] = [
 const PERSON_LINK: Record<ProductSlug, string> = {
   lodestar: "built",
   neonduck: "built",
+  kairo: "built",
   lightbox: "built",
   dbrain: "built",
   "haystack-os": "built",
@@ -847,6 +891,7 @@ const PERSON_LINK: Record<ProductSlug, string> = {
 const PRODUCT_TECH: Record<ProductSlug, string[]> = {
   lodestar: ["swift", "typescript", "cloudflare", "claude-api", "openai", "python", "mcp"],
   neonduck: ["claude-agent-sdk", "nodejs", "sqlite", "playwright", "realtime-voice", "twilio", "docker", "mcp"],
+  kairo: ["claude-agent-sdk", "nodejs", "sqlite", "playwright", "realtime-voice", "openai", "swift", "docker", "mcp"],
   lightbox: ["claude-api", "typescript", "postgres", "docker", "mcp", "cloudflare"],
   dbrain: ["python", "postgres", "mcp", "docker", "cloudflare", "twilio", "realtime-voice"],
   "haystack-os": ["claude-agent-sdk", "nextjs", "typescript", "postgres", "mcp", "vercel"],
@@ -867,6 +912,8 @@ const PRODUCT_TECH: Record<ProductSlug, string[]> = {
 const PRODUCT_LINKS: Edge[] = [
   { from: "lightbox", to: "dbrain", label: "runs inside" },
   { from: "neonduck", to: "dbrain", label: "remembers through" },
+  { from: "kairo", to: "neonduck", label: "grew out of" },
+  { from: "kairo", to: "dbrain", label: "remembers through" },
 ]
 
 /**
@@ -875,7 +922,7 @@ const PRODUCT_LINKS: Edge[] = [
  * photos, borders the home stack it runs inside).
  */
 export const CONSTELLATIONS: Array<{ theme: string; label: string; members: ProductSlug[] }> = [
-  { theme: "self-hosting", label: "Home stack", members: ["neonduck", "dbrain"] },
+  { theme: "self-hosting", label: "Home stack", members: ["neonduck", "kairo", "dbrain"] },
   { theme: "photography", label: "Cameras and photos", members: ["lightbox", "lodestar", "retouch-studio"] },
   { theme: "ideas", label: "Ideas in the works", members: ["van-roye", "miradouro"] },
   { theme: "family", label: "For the family", members: ["babytalk", "birth-announcement", "family-recipes"] },
@@ -898,6 +945,7 @@ export const EDGES: Edge[] = [
  * with the month they happened; dates match `started` on the products.
  */
 export const MISSION_LOG: Array<{ date: string; label: string; text: string; href?: string }> = [
+  { date: "2026-11", label: "Nov 2026", text: "Gave my private assistant its own name, Kairo, with an iPhone app, live WhatsApp and a voice that works with the screen locked.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Launched FDE Club, a community for forward deployed engineers in Switzerland, built by 122 AI agents.", href: "/work/fde-club" },
   { date: "2026-11", label: "Nov 2026", text: "Rebuilt my recruiting tool as Haystack OS, a lean ATS and CRM where Claude runs on my own subscription.", href: "/work/haystack-os" },
   { date: "2026-11", label: "Nov 2026", text: "Turned Emineon into an AI-native consulting firm in Geneva, with a new site in English, French and German.", href: "/work/emineon" },
@@ -931,6 +979,10 @@ export const FAQS: Faq[] = [
   {
     q: "What is Neonduck?",
     a: "Neonduck is a personal AI assistant for people in Switzerland that I built on the Claude Agent SDK. It can do things online for you, like mail, calendar, shopping and messages, and it can even make phone calls. Every customer gets their own isolated server, and the assistant asks before it sends, pays, deletes or invites. It is in an invitation-only beta at neonduck.io.",
+  },
+  {
+    q: "What is Kairo?",
+    a: "Kairo is the private AI assistant I built for myself, next to Neonduck. It runs on my own Claude subscription on a server at home, reads and answers my personal and business WhatsApp, tracks my meals and health, and talks with me by voice on my iPhone. It asks before it sends, deletes, pays or calls. It is for me alone, so there is nothing to sign up for.",
   },
   {
     q: "What is Lodestar?",

@@ -36,9 +36,9 @@ const nextConfig = {
       { source: "/frontier/:path*", destination: "/logbook/frontier/:path*", permanent: true },
       // One Rive Foundry page: the workshop page.
       { source: "/work/rive-foundry", destination: "/rive-foundry", permanent: true },
-      // Sony Camera MCP was Lodestar's first prototype; Daffy is Neonduck; Bicraw and SibionAI are no longer listed.
+      // Sony Camera MCP was Lodestar's first prototype; my private assistant has its own page as Kairo; Bicraw and SibionAI are no longer listed.
       { source: "/work/sony-camera-mcp", destination: "/work/lodestar", permanent: true },
-      { source: "/work/daffy", destination: "/work/neonduck", permanent: true },
+      { source: "/work/daffy", destination: "/work/kairo", permanent: true },
       { source: "/work/bicraw", destination: "/work", permanent: true },
       { source: "/work/sibion-ai", destination: "/work", permanent: true },
       // Emineon OS was rebuilt as Haystack OS.

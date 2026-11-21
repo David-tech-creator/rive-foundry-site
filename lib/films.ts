@@ -62,6 +62,15 @@ export const FILMS: Record<string, Film> = {
       description: "The neonduck.io site: its hero film, then the lunch invite example, where it checks the calendar and asks before it replies.",
     },
   },
+  kairo: {
+    slug: "kairo",
+    seconds: 24,
+    description:
+      "Kairo on three phones: the morning briefing opens and scrolls from the day's hours to what needs me; a WhatsApp chat gets a new message live and Kairo drafts the reply; Health scrolls from today's meals to the week.",
+    note: "Filmed on a local copy with made-up people, chats and meals. The draft is a real one, written by Claude from the chat.",
+    published: "2026-11-21",
+    smallAspect: PHONE_CROP,
+  },
   lightbox: {
     slug: "lightbox",
     seconds: 14,

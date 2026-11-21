@@ -10,7 +10,8 @@ import { CONTRIBUTOR_ROLE, statusLabel, workJsonLd, workMetadata, workPath } fro
 import { FILM_SIZE, filmPaths, getFilm } from "@/lib/films"
 import { ProductFilm } from "@/components/site/product-film"
 import { NeonduckDiagram } from "@/components/site/neonduck-diagram"
-import { DaffySection } from "@/components/site/daffy-section"
+import { KairoDiagram } from "@/components/site/kairo-diagram"
+import { KairoSection } from "@/components/site/kairo-section"
 import { DbrainDiagram } from "@/components/site/dbrain-diagram"
 
 export const dynamicParams = false
@@ -206,6 +207,17 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             </section>
           ) : null}
 
+          {p.slug === "kairo" ? (
+            <section aria-labelledby="architecture-title" className="wrap mt-16 md:mt-24">
+              <h2 id="architecture-title" className="kicker">
+                How it fits together
+              </h2>
+              <div className="mt-6">
+                <KairoDiagram />
+              </div>
+            </section>
+          ) : null}
+
           <div className="wrap mt-16 grid gap-16 md:mt-24 md:grid-cols-12">
             <aside className="md:col-span-4" aria-label="Facts">
               <dl className="divide-y divide-line border-y border-line">
@@ -235,7 +247,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 ))}
               </div>
 
-              {p.slug === "neonduck" ? <DaffySection /> : null}
+              {p.slug === "kairo" ? <KairoSection /> : null}
 
               {film?.second ? (
                 <section aria-labelledby="second-film-title" className="mt-20">
