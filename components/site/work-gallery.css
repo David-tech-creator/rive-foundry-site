@@ -78,12 +78,15 @@
 
 .gal-cap {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-top: 0.9rem;
 }
 .gal-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 1.125rem;
   color: var(--text);
   transition: color 0.2s ease;
@@ -218,5 +221,20 @@
 @media (prefers-reduced-motion: reduce) {
   .gal .gal-frame {
     transform: none !important;
+  }
+}
+
+.gal-logo {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  border-radius: 22%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+@media (min-width: 768px) {
+  .gal-logo {
+    width: 2rem;
+    height: 2rem;
   }
 }

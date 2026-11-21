@@ -12,6 +12,7 @@ import { ProductFilm } from "@/components/site/product-film"
 import { NeonduckDiagram } from "@/components/site/neonduck-diagram"
 import { KairoDiagram } from "@/components/site/kairo-diagram"
 import { KairoSection } from "@/components/site/kairo-section"
+import { KairoTour } from "@/components/site/kairo-tour"
 import { DbrainDiagram } from "@/components/site/dbrain-diagram"
 
 export const dynamicParams = false
@@ -132,7 +133,19 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 <li aria-current="page">{p.name}</li>
               </ol>
             </nav>
-            <h1 className="mt-8 text-balance text-[clamp(3rem,8vw,6.5rem)] leading-[0.95]">{p.name}</h1>
+            <div className="mt-8 flex items-center gap-[clamp(1rem,2.4vw,1.75rem)]">
+              {p.logo ? (
+                <Image
+                  src={p.logo}
+                  alt={`${p.name} logo`}
+                  width={256}
+                  height={256}
+                  priority
+                  className="rounded-[22%] object-cover ring-1 ring-white/15 size-[clamp(3.25rem,7.5vw,6rem)] shrink-0"
+                />
+              ) : null}
+              <h1 className="text-balance text-[clamp(3rem,8vw,6.5rem)] leading-[0.95]">{p.name}</h1>
+            </div>
             <div className="mt-6 grid gap-8 md:grid-cols-12">
               <div className="md:col-span-8">
                 <p className="max-w-2xl text-xl leading-snug text-text md:text-2xl">{p.oneLiner}</p>
@@ -247,6 +260,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 ))}
               </div>
 
+              {p.slug === "kairo" ? <KairoTour /> : null}
               {p.slug === "kairo" ? <KairoSection /> : null}
 
               {film?.second ? (

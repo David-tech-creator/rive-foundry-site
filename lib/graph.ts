@@ -49,6 +49,8 @@ export type Product = {
   started?: string
   /** hero image under /public/work/<slug>/ */
   image: string
+  /** The product's own logo as a square tile (public/work/<slug>/logo.webp), where it has one. */
+  logo?: string
   /** Screenshots of the real interface, shown under the story (files in /public/work/<slug>/). */
   screens?: Array<{ src: string; alt: string; caption: string; width: number; height: number }>
   /** One line under the Screens heading, e.g. that the data is made up. */
@@ -315,7 +317,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Neonduck is a personal AI assistant for Switzerland that handles mail, calendar, trains and shopping, and can even make phone calls. Each customer gets an isolated server.",
     story: [
-      "Neonduck is a personal AI assistant that handles the online chores I used to do myself, and it can even make phone calls. I use it every day, and I built it so people who don't write code can have one too. You write or talk to it and it works on your own accounts: it reads and answers mail, manages the calendar, looks up trains, fills a shopping basket on Swiss shops, sends WhatsApp messages and writes a morning briefing.",
+      "Neonduck is a personal AI assistant that handles the online chores I used to do myself, and it can even make phone calls. It started as Kairo, the assistant I built for myself, and once that worked I rebuilt it so people who don't write code can have one too. You write or talk to it and it works on your own accounts: it reads and answers mail, manages the calendar, looks up trains, fills a shopping basket on Swiss shops, sends WhatsApp messages and writes a morning briefing.",
       "Every customer gets their own container, database, browser profile and data volume, so one person's mail, logins and memory are kept apart from everyone else's. If you delete your account, your server is deleted too. A small central service only handles sign-in, provisioning and backups.",
       "It works in a real browser that you can watch and take over at any time. Saved passwords are never shown to the model. A new instance asks before it sends, deletes, pays for or invites anything, and tasks that run while nobody is watching can only read. Voice runs on Gemini Live or OpenAI Realtime and passes questions on to Claude, and phone calls go out on the customer's own Twilio account only after they tap Allow.",
       "It connects to Google and Microsoft accounts, any MCP server by address, smart-home devices and music services. The site is in English, German, French and Italian. Neonduck is in an invitation-only beta for now.",
@@ -354,7 +356,8 @@ export const PRODUCTS: Product[] = [
     description:
       "Kairo is the private AI assistant I built for myself on Claude: it reads and answers my WhatsApp, tracks my meals and health, and talks with me by voice.",
     story: [
-      "Kairo grew out of Neonduck. Neonduck is the assistant I'm opening up to other people, so it has to stay careful and general. I wanted one that goes all the way for me alone: both my WhatsApp accounts living inside it, my meals and my watch, my mail and calendar, and a voice I can talk to with the phone in my pocket. So I built Kairo, for an audience of one.",
+      "It all started at the beginning of 2026, when I set up OpenClaw and had an AI agent doing real things for me for the first time. I wanted more of that, so I built my own assistant around Garry Tan's GBrain, and the two grew up together: the brain into Dbrain, my own memory, and the assistant into Kairo.",
+      "I made Kairo for myself first, with nothing held back: both my WhatsApp accounts living inside it, my meals and my watch, my mail and calendar, and a voice I can talk to with the phone in my pocket. Once it worked for me, I thought other people might want one too. That became Neonduck, the careful public version, while Kairo stays the one built for an audience of one.",
       "It runs on my own Claude subscription through the Claude Agent SDK, in a container on the NAS at home, right next to Dbrain, my self-hosted memory. Before it answers it looks things up in Dbrain, and it files what it learns back there. Reading is free. Anything that sends, deletes, pays or calls puts a card on my screen, and I tap Allow every single time.",
       "WhatsApp is the part I use most. I was sick of iPhone dictation mangling my messages, so now I talk and Kairo writes what I meant, in the tone I use in that chat. It can draft a reply from the conversation too, and a new message arrives as a notification that says who wrote and whether it came in on my personal or my business account.",
       "In November it got its own name and look: a drop of glass as the logo, an iPhone app built on Apple's Liquid Glass, an orb that breathes while we talk, and an icon set made just for it. It lives on my phone and on a server in my flat, not in the App Store.",
@@ -396,7 +399,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Dbrain is my self-hosted memory: a Docker stack on a home NAS that stores my records verbatim and gives Claude access through MCP.",
     story: [
-      "Claude kept forgetting what I told it, and my information was spread across mail, chats and a reading list I never read. So I built Dbrain, a memory that Claude can search, running on a NAS in my flat.",
+      "Claude kept forgetting what I told it, and my information was spread across mail, chats and a reading list I never read. I started with Garry Tan's GBrain, used it the way it was meant to be used, and then shaped it around how I work. That became Dbrain, a memory that Claude can search, running on a NAS in my flat.",
       "Every 30 minutes an ingest loop saves new records word for word in Postgres. It makes no model calls and writes no AI summaries, so Claude always reads the original text when it answers. A separate table holds only what I explicitly asked it to remember, and the schema keeps personal and business data apart.",
       "A tool server makes search, pages and memory available as MCP connectors in claude.ai and in Neonduck. Other services in the same stack handle messaging, smart home, fitness, shared expenses, a browser and AI phone calls. The whole stack can only be reached through an authenticated tunnel.",
       "I wanted to measure how well it finds things. A golden set of real questions scores recall before and after every change to search, and the last recorded run answered 23 of 25. Backups run every night, and a restore is tested automatically every week.",
@@ -865,6 +868,14 @@ export const PRODUCTS: Product[] = [
   },
 ]
 
+/**
+ * Products with a logo of their own, shown as an app-icon tile beside the name.
+ * The birth announcement and the family recipe site stay anonymous, so they
+ * have none; Dbrain and Haystack OS have no logo of their own.
+ */
+const WITH_LOGO: ProductSlug[] = ["kairo", "neonduck", "lodestar", "lightbox", "emineon", "haystack", "romandy-cto", "fde-club", "rive-foundry", "babytalk", "retouch-studio", "van-roye", "miradouro"]
+for (const p of PRODUCTS) if ((WITH_LOGO as string[]).includes(p.slug)) p.logo = `/work/${p.slug}/logo.webp`
+
 /* ------------------------------------------------------------------- edges */
 
 const PERSON_LINK: Record<ProductSlug, string> = {
@@ -912,7 +923,7 @@ const PRODUCT_TECH: Record<ProductSlug, string[]> = {
 const PRODUCT_LINKS: Edge[] = [
   { from: "lightbox", to: "dbrain", label: "runs inside" },
   { from: "neonduck", to: "dbrain", label: "remembers through" },
-  { from: "kairo", to: "neonduck", label: "grew out of" },
+  { from: "neonduck", to: "kairo", label: "grew out of" },
   { from: "kairo", to: "dbrain", label: "remembers through" },
 ]
 
@@ -955,6 +966,7 @@ export const MISSION_LOG: Array<{ date: string; label: string; text: string; hre
   { date: "2026-10", label: "Oct 2026", text: "Opened an invitation-only beta of Neonduck.", href: "/work/neonduck" },
   { date: "2026-09", label: "Sep 2026", text: "Built Dbrain and Lightbox on my home server.", href: "/work/dbrain" },
   { date: "2026-06", label: "Jun 2026", text: "Started Babytalk and Retouch Studio.", href: "/work/babytalk" },
+  { date: "2026-01", label: "Early 2026", text: "Set up OpenClaw, then built my own assistant around Garry Tan's GBrain: the start of Kairo, Dbrain and Neonduck.", href: "/work/kairo" },
 ]
 
 /* -------------------------------------------------------------------- faqs */
@@ -982,7 +994,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "What is Kairo?",
-    a: "Kairo is the private AI assistant I built for myself, next to Neonduck. It runs on my own Claude subscription on a server at home, reads and answers my personal and business WhatsApp, tracks my meals and health, and talks with me by voice on my iPhone. It asks before it sends, deletes, pays or calls. It is for me alone, so there is nothing to sign up for.",
+    a: "Kairo is the private AI assistant I built for myself, before Neonduck: I made it for me first, and Neonduck is the public version that grew out of it. It runs on my own Claude subscription on a server at home, reads and answers my personal and business WhatsApp, tracks my meals and health, and talks with me by voice on my iPhone. It asks before it sends, deletes, pays or calls. It is for me alone, so there is nothing to sign up for.",
   },
   {
     q: "What is Lodestar?",

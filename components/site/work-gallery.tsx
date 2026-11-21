@@ -16,6 +16,8 @@ export type GalleryItem = {
   meta: string
   /** what it does, in one line */
   line: string
+  /** the product's own logo tile, where it has one */
+  logo?: string
 }
 
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v))
@@ -362,7 +364,10 @@ export function WorkGallery({ items, head }: { items: GalleryItem[]; head: React
                     <Image src={p.src} alt="" quality={85} width={1600} height={1000} sizes="(min-width: 768px) 60vw, 84vw" />
                   </span>
                   <span className="gal-cap">
-                    <span className="gal-name">{p.name}</span>
+                    <span className="gal-name">
+                      {p.logo ? <Image src={p.logo} alt="" width={256} height={256} className="gal-logo" /> : null}
+                      {p.name}
+                    </span>
                     <span className="gal-meta">{p.meta}</span>
                   </span>
                   <span className="gal-line">{p.line}</span>

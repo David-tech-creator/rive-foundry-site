@@ -50,6 +50,7 @@ const SELECTED: GalleryItem[] = [...PRODUCTS]
     alt: FILMS[p.slug] ? `${p.name} on screen, a still from its product film` : p.imageAlt,
     meta: p.started ? `${statusLabel(p.status)} · ${p.started.slice(0, 4)}` : statusLabel(p.status),
     line: p.oneLiner,
+    logo: p.logo,
   }))
 
 const WHAT_I_BUILD = [
