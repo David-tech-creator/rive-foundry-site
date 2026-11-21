@@ -870,10 +870,10 @@ export const PRODUCTS: Product[] = [
 
 /**
  * Products with a logo of their own, shown as an app-icon tile beside the name.
- * The birth announcement and the family recipe site stay anonymous, so they
- * have none; Dbrain and Haystack OS have no logo of their own.
+ * The family recipe site stays anonymous (its icon is the family's initial), and
+ * Dbrain has no logo of its own.
  */
-const WITH_LOGO: ProductSlug[] = ["kairo", "neonduck", "lodestar", "lightbox", "emineon", "haystack", "romandy-cto", "fde-club", "rive-foundry", "babytalk", "retouch-studio", "van-roye", "miradouro"]
+const WITH_LOGO: ProductSlug[] = ["kairo", "neonduck", "lodestar", "lightbox", "haystack-os", "emineon", "haystack", "romandy-cto", "fde-club", "rive-foundry", "babytalk", "retouch-studio", "van-roye", "miradouro", "birth-announcement"]
 for (const p of PRODUCTS) if ((WITH_LOGO as string[]).includes(p.slug)) p.logo = `/work/${p.slug}/logo.webp`
 
 /* ------------------------------------------------------------------- edges */
