@@ -81,7 +81,7 @@ ${founded ? `- Founder of: ${founded}\n` : ""}${runs ? `- Runs: ${runs}\n` : ""}
 
 ## What he offers
 
-${SERVICES.map((s) => `### ${s.copy.en.short}\n\n${s.copy.en.lead}\n\nPage: ${absoluteUrl(s.path.en)} (French: ${absoluteUrl(s.path.fr)})\n\nProof: ${s.copy.en.proof.map((p) => `${p.slug}, ${p.line}`).join(" ")}`).join("\n\n")}
+${SERVICES.map((s) => `### ${s.copy.en.short}\n\n${s.copy.en.lead}\n\nPage: ${absoluteUrl(s.path.en)}\n\nProof: ${s.copy.en.proof.map((p) => `${p.slug}, ${p.line}`).join(" ")}`).join("\n\n")}
 
 For hiring senior tech people he points to Haystack (${absoluteUrl(workPath("haystack"))}), and for meeting other tech leaders to Romandy CTO (${absoluteUrl(workPath("romandy-cto"))}).
 

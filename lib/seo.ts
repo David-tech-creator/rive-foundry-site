@@ -157,7 +157,7 @@ export type PageMetaInput = {
   type?: "website" | "profile" | "article"
   noindex?: boolean
   keywords?: string[]
-  /** language of the page; "fr" pages get fr_CH and the html lang fix */
+  /** language of the page */
   lang?: Lang
   /** the same page in each language, for hreflang */
   languages?: Record<Lang, string>
@@ -179,7 +179,7 @@ export const META_DESCRIPTION_MAX = 155
 
 export function pageMetadata(input: PageMetaInput): Metadata {
   const { title, absoluteTitle, description, path, image, imageAlt, type = "website", noindex, keywords, lang = "en", languages } = input
-  const locale = lang === "fr" ? "fr_CH" : SITE.locale
+  const locale = SITE.locale
   const url = absoluteUrl(path)
   const ogTitle = absoluteTitle ?? (title ? `${title} | ${SITE.siteName}` : SITE.siteName)
   // A page's own openGraph object replaces its parent's, file-based image
@@ -228,9 +228,6 @@ export function pageMetadata(input: PageMetaInput): Metadata {
     keywords: keywords ?? KEYWORDS,
     alternates: {
       canonical: url,
-      ...(languages
-        ? { languages: { en: absoluteUrl(languages.en), fr: absoluteUrl(languages.fr), "x-default": absoluteUrl(languages.en) } }
-        : {}),
     },
     authors: [{ name: SITE.name, url: SITE_URL }],
     creator: SITE.name,
@@ -692,7 +689,6 @@ export function serviceNode(s: Service, lang: Lang = "en"): Node {
     "@type": "Service",
     "@id": serviceId(s),
     name: s.copy.en.short,
-    alternateName: s.copy.fr.short,
     serviceType: s.serviceType,
     description: c.description,
     url: absoluteUrl(s.path[lang]),
@@ -704,7 +700,7 @@ export function serviceNode(s: Service, lang: Lang = "en"): Node {
   }
 }
 
-/** /services and /fr: the list of offers. */
+/** /services: the list of offers. */
 export function servicesHubJsonLd(lang: Lang): JsonLd {
   const path = SERVICES_PATH[lang]
   const hub = HUB_COPY[lang]
@@ -724,7 +720,7 @@ export function servicesHubJsonLd(lang: Lang): JsonLd {
     },
     ...SERVICES.map((s) => serviceNode(s, lang)),
     ...coreNodes(),
-    breadcrumbNode(path, [{ name: lang === "fr" ? "En français" : "Services", path }]),
+    breadcrumbNode(path, [{ name: "Services", path }]),
   )
 }
 
@@ -743,7 +739,7 @@ export function servicePageJsonLd(s: Service, lang: Lang): JsonLd {
     },
     ...coreNodes(),
     breadcrumbNode(path, [
-      { name: lang === "fr" ? "En français" : "Services", path: SERVICES_PATH[lang] },
+      { name: "Services", path: SERVICES_PATH[lang] },
       { name: c.short, path },
     ]),
   )

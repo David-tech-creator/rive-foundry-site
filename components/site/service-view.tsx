@@ -35,14 +35,6 @@ function Crumbs({ lang, current, parent }: { lang: Lang; current: string; parent
   )
 }
 
-function LangSwitch({ lang, href }: { lang: Lang; href: string }) {
-  const other: Lang = lang === "en" ? "fr" : "en"
-  return (
-    <a href={href} hrefLang={other} lang={other} className="link-line tap text-sm text-muted-foreground">
-      {UI[lang].langSwitch}
-    </a>
-  )
-}
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
@@ -93,8 +85,7 @@ export function ServiceView({ service, lang }: { service: Service; lang: Lang })
       <main id="main" lang={lang} className="pb-24 pt-36 md:pt-44">
         <article className="wrap">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <Crumbs lang={lang} current={c.short} parent={{ href: SERVICES_PATH[lang], label: lang === "fr" ? "En français" : ui.services }} />
-            <LangSwitch lang={lang} href={service.path[lang === "en" ? "fr" : "en"]} />
+            <Crumbs lang={lang} current={c.short} parent={{ href: SERVICES_PATH[lang], label: ui.services }} />
           </div>
 
           <h1 className="mt-8 max-w-4xl text-[clamp(2.5rem,6.5vw,5.5rem)] leading-[0.98]">{c.h1}</h1>
@@ -183,7 +174,7 @@ export function ServiceView({ service, lang }: { service: Service; lang: Lang })
   )
 }
 
-/** /services and /fr: every offer with a short lead, plus where else to go. */
+/** /services: every offer with a short lead, plus where else to go. */
 export function ServicesHubView({ lang }: { lang: Lang }) {
   const hub = HUB_COPY[lang]
   const ui = UI[lang]
@@ -194,8 +185,7 @@ export function ServicesHubView({ lang }: { lang: Lang }) {
       <main id="main" lang={lang} className="pb-24 pt-36 md:pt-44">
         <div className="wrap">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <Crumbs lang={lang} current={lang === "fr" ? "En français" : ui.services} />
-            <LangSwitch lang={lang} href={SERVICES_PATH[lang === "en" ? "fr" : "en"]} />
+            <Crumbs lang={lang} current={ui.services} />
           </div>
 
           <p className="kicker mt-10">{hub.kicker}</p>

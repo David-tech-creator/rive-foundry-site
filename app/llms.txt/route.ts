@@ -30,8 +30,8 @@ ${PERSON?.bio ?? SITE.description}
 
 ## Services
 
-${SERVICES.map((s) => `- [${s.copy.en.short}](${absoluteUrl(s.path.en)}): ${s.copy.en.description} French: ${absoluteUrl(s.path.fr)}`).join("\n")}
-- [All services](${absoluteUrl(SERVICES_PATH.en)}) and [en français](${absoluteUrl(SERVICES_PATH.fr)})
+${SERVICES.map((s) => `- [${s.copy.en.short}](${absoluteUrl(s.path.en)}): ${s.copy.en.description}`).join("\n")}
+- [All services](${absoluteUrl(SERVICES_PATH.en)})
 - Hiring senior tech people: [Haystack](${absoluteUrl(workPath("haystack"))})
 
 ## About

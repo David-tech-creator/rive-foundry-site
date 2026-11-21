@@ -41,11 +41,6 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/fr" hrefLang="fr" lang="fr" className="link-quiet tap">
-                  En français
-                </Link>
-              </li>
-              <li>
                 <Link href="/#contact" className="link-quiet tap">
                   Contact
                 </Link>

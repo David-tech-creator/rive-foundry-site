@@ -87,11 +87,9 @@ export const viewport: Viewport = {
 const PARTICLES_BOOT = `try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'WebGL2RenderingContext' in window){document.documentElement.setAttribute('data-particles','on')}}catch(e){}`
 
 /**
- * The html shell shared by the two root layouts: app/(en)/layout.tsx and
- * app/(fr)/layout.tsx. Two root layouts, so the French pages are served with
- * lang="fr" in the HTML itself rather than switched by a script.
+ * The html shell of the root layout, app/(en)/layout.tsx.
  */
-export function RootShell({ lang, children }: { lang: "en" | "fr"; children: React.ReactNode }) {
+export function RootShell({ lang, children }: { lang: "en"; children: React.ReactNode }) {
   return (
     <html lang={lang} className={interTight.variable} suppressHydrationWarning>
       <head>
@@ -99,7 +97,7 @@ export function RootShell({ lang, children }: { lang: "en" | "fr"; children: Rea
       </head>
       <body className="font-sans">
         <a href="#main" className="skip-link">
-          {lang === "fr" ? "Aller au contenu" : "Skip to content"}
+          Skip to content
         </a>
         {/* One fixed particle field behind every page (decoration, aria-hidden). */}
         <ParticleStage />

@@ -6,8 +6,6 @@ import { SERVICES, SERVICES_PATH } from "@/lib/services"
 import { WORKSHOP, CONTENT_UPDATED, SITE, SITE_URL } from "@/lib/site"
 import { absoluteUrl, filmSitemapVideos, productsByWeight, workPath } from "@/lib/seo"
 
-/** hreflang alternates for a page that exists in both languages */
-const langs = (p: { en: string; fr: string }) => ({ en: absoluteUrl(p.en), fr: absoluteUrl(p.fr), "x-default": absoluteUrl(p.en) })
 
 /**
  * Every indexable route. Privacy and terms stay indexable but are left out. The retired /login (308 to /), /events and /join
@@ -47,24 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
-      alternates: { languages: langs(SERVICES_PATH) },
     },
-    {
-      url: absoluteUrl(SERVICES_PATH.fr),
+    ...SERVICES.map((s) => ({
+      url: absoluteUrl(s.path.en),
       lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-      alternates: { languages: langs(SERVICES_PATH) },
-    },
-    ...SERVICES.flatMap((s) =>
-      (["en", "fr"] as const).map((lang) => ({
-        url: absoluteUrl(s.path[lang]),
-        lastModified,
-        changeFrequency: "monthly" as const,
-        priority: 0.85,
-        alternates: { languages: langs(s.path) },
-      })),
-    ),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
     {
       url: absoluteUrl(LOGBOOK.path),
       lastModified: posts[0] ? new Date(posts[0].date) : lastModified,

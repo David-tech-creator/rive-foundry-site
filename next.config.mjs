@@ -23,6 +23,14 @@ const nextConfig = {
   // redirects, which search engines treat like 301s and use to pass signals.
   async redirects() {
     return [
+      // The French pages were removed (David, 2026-11-21): old French links land on the English pages.
+      { source: "/fr", destination: "/services", permanent: true },
+      { source: "/fr/automatisation-ia", destination: "/services/ai-automation", permanent: true },
+      { source: "/fr/developpement-application-ia", destination: "/services/ai-app-development", permanent: true },
+      { source: "/fr/serveur-mcp", destination: "/services/mcp-servers", permanent: true },
+      { source: "/fr/ia-souveraine", destination: "/services/private-ai-switzerland", permanent: true },
+      { source: "/fr/conseil-ia", destination: "/services/ai-advice", permanent: true },
+      { source: "/fr/:path*", destination: "/", permanent: true },
       { source: "/events", destination: "/rive-foundry", permanent: true },
       { source: "/events/:slug*", destination: "/rive-foundry", permanent: true },
       { source: "/join", destination: "/rive-foundry", permanent: true },

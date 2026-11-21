@@ -6,7 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/site"
 
 export type ContactInterest = "build" | "together" | "hiring" | "event" | "chat" | "other"
 
-const INTERESTS: Record<"en" | "fr", Array<{ value: ContactInterest; label: string }>> = {
+const INTERESTS: Record<"en", Array<{ value: ContactInterest; label: string }>> = {
   en: [
     { value: "build", label: "Something you are building" },
     { value: "together", label: "Working together" },
@@ -14,14 +14,6 @@ const INTERESTS: Record<"en" | "fr", Array<{ value: ContactInterest; label: stri
     { value: "event", label: "An event or a talk" },
     { value: "chat", label: "Just a chat" },
     { value: "other", label: "Something else" },
-  ],
-  fr: [
-    { value: "build", label: "Un projet que vous construisez" },
-    { value: "together", label: "Travailler ensemble" },
-    { value: "hiring", label: "Recruter, ou un prochain poste" },
-    { value: "event", label: "Un événement ou une conférence" },
-    { value: "chat", label: "Simplement échanger" },
-    { value: "other", label: "Autre chose" },
   ],
 }
 
@@ -45,25 +37,6 @@ const T = {
     undelivered2: "instead. Your message is already filled in.",
     emailMe: "email me at",
   },
-  fr: {
-    name: "Nom",
-    email: "E-mail",
-    about: "Sujet",
-    message: "Message",
-    placeholder: "Quelques lignes suffisent. Un lien, c'est encore mieux.",
-    privacy1: "Je l'utilise uniquement pour vous répondre. Détails dans la",
-    privacy2: "politique de confidentialité",
-    send: "Envoyer",
-    sending: "Envoi...",
-    wrong: "Une erreur s'est produite.",
-    retry: "Réessayez dans un instant.",
-    done: "Bien reçu.",
-    doneLine: "Merci pour votre message. Je vous réponds par e-mail.",
-    almost: "Presque.",
-    undelivered1: "Mon formulaire ne peut pas envoyer d'e-mail pour le moment, ce message risque de ne pas m'arriver. Merci de",
-    undelivered2: "à la place. Votre message est déjà rempli.",
-    emailMe: "m'écrire à",
-  },
 }
 
 const field =
@@ -81,7 +54,7 @@ export function ContactForm({
 }: {
   defaultInterest?: ContactInterest
   source?: string
-  lang?: "en" | "fr"
+  lang?: "en"
 }) {
   const t = T[lang]
   const interests = INTERESTS[lang]
