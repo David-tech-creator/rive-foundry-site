@@ -10,14 +10,14 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "Chat",
         body: [
-          "Every chat is its own Claude session that can look things up, use my tools and keep going until the job is done. Answers can come back as more than text: a day drawn on an hour timeline, cards, charts, a shopping basket, a form to fill in. I can attach photos and files, pick Sonnet or Opus per chat, and group chats into projects that share their own instructions and files.",
+          "Every chat can look things up, use my tools and keep going until the job is done. Answers can come back as more than text: a day drawn on an hour timeline, cards, charts, a shopping basket, a form to fill in. I can attach photos and files, and group chats into projects that share their own instructions and files.",
         ],
       },
       {
         title: "Voice",
         body: [
-          "A tap on the orb and we talk. A realtime voice model does the talking and hands every real question to the same Claude session, so it can check my calendar or write a message mid-sentence. In the iPhone app it keeps going with the screen locked, in my pocket.",
-          "On the iPhone a talk is a real phone call: it sits in the Dynamic Island, I end it from my AirPods, and another call puts it on hold. It works the other way round too. Kairo can ring me with the morning briefing, and an alarm can wake me straight into it: I tap Brief me and it starts talking.",
+          "A tap on the orb and we talk, and it can check my calendar or write a message mid-sentence. On the iPhone a talk is a real phone call: it keeps going with the screen locked, in my pocket, it sits in the Dynamic Island, I end it from my AirPods, and another call puts it on hold.",
+          "It works the other way round too. Kairo can ring me with the morning briefing, and an alarm can wake me straight into it: I tap Brief me and it starts talking.",
         ],
       },
       {
@@ -71,7 +71,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Drafts",
         body: [
           "My email drafts, from every mailbox, as a deck of cards I swipe through one at a time: right to send, left to bin, up to fix, down for later. To fix one I just say what to change, and Kairo rewrites it in the mailbox itself.",
-          "\"Write replies\" goes further. Kairo looks for the mail from the last two weeks where a real person is waiting on me, checks my sent folder so it never answers twice, and writes up to eight replies as drafts in the right mailbox and thread, in the language of the thread and the way I write. Where only I know the answer, it leaves a marked gap instead of guessing. And every correction I make is written down as a lesson about how I write, which it reads before the next round.",
+          "\"Write replies\" goes further. Kairo looks for the mail from the last two weeks where a real person is waiting on me, with the same check of my sent folders, and writes up to eight replies as drafts in the right mailbox and thread, in the language of the thread and the way I write. Where only I know the answer, it leaves a marked gap instead of guessing. And every correction I make is written down as a lesson about how I write, which it reads before the next round.",
         ],
       },
       {
@@ -100,7 +100,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "Memory",
         body: [
-          "Everything Kairo remembers lives in Dbrain, my self-hosted memory, and the Memory page shows it in three kinds: facts, skills and reminders.",
+          "Everything Kairo remembers lives in Dbrain, and the Memory page shows it in three kinds: facts, skills and reminders.",
           "Facts come in two ways. When I tell it something in a chat, \"remember that Lea is vegetarian\", it saves it straight to Dbrain and the fact shows up in the log. And every evening at 21:30 Kairo reviews the day's conversations by itself and proposes up to six things worth keeping for good: a preference, a decision, a fact about someone, a promise with a date. It checks Dbrain first and leaves out what is already there. Nothing it proposes is saved until I tap Keep, and what I turn down is never proposed again.",
           "A skill is my way of doing a kind of request. When I ask for the same sort of thing twice, or tell it how I want something done, the evening review can propose it as a skill: a name, when it applies and the steps. Once I say Use this, it follows those steps every time. A reminder is a note for later: \"when the landlord comes up, remind me about the heating\". It waits for the topic and speaks up when it does.",
           "My conversations go into Dbrain too, word for word. Once a chat goes quiet it is written out as a file, and Dbrain files it with no model in between, so what I said is kept exactly as I said it. The notes of my meetings are filed the same way each evening, so a brief before the next meeting can find them.",
@@ -109,7 +109,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "Saved for later",
         body: [
-          "One library for every link I want to come back to, filled from the share sheet on my iPhone, a bookmarklet on my Mac and Kairo itself. Each save is summarised and filed in Dbrain, so Kairo can find it again when it matters.",
+          "One library for every link I want to come back to, filled from my iPhone, a bookmarklet on my Mac and Kairo itself. Each save is summarised and filed in Dbrain, so Kairo can find it again when it matters.",
         ],
       },
     ],
@@ -120,23 +120,22 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "WhatsApp",
         body: [
-          "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, videos, voice notes with transcripts, replies and reactions. I can dictate and get the message I meant, or let it draft the reply from the conversation; either way it only fills the box until I tap Send. A new message arrives as a notification that says who wrote and on which account.",
-          "On the phone it behaves like the WhatsApp I know. I hold the mic for a voice note, slide away to cancel or up to lock it, swipe a message to reply to it, and mute a chat in Kairo without touching WhatsApp. Opening a chat reads it, blue ticks included, just like WhatsApp.",
-          "Dictation works like in the Claude app: the words appear while I speak, and X throws them away, Stop leaves them in the box and Send sends. Kairo works out the chat's language from its messages and shows it as a small tag I can tap to switch. When I stop, it tidies the words in the way I write in that chat, in about half a second. And when someone wrote last, up to three short replies sit above the box; a tap puts one in, it never sends.",
-          "And it can read my messages to me. With AirPods in, a new message is spoken in Kairo's voice as the notification itself: \"Anna says: running ten minutes late\". Otherwise there is Play on the notification, or \"Read my messages\" for every unread chat in a row, and I can answer by voice.",
+          "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, videos, voice notes with transcripts, replies and reactions. It behaves like the WhatsApp I know. I hold the mic for a voice note, slide away to cancel or up to lock it, and swipe a message to reply to it. Opening a chat reads it, blue ticks included, and I can mute a chat in Kairo without touching WhatsApp.",
+          "Dictation works like in the Claude app: the words appear while I speak, and X throws them away, Stop leaves them in the box and Send sends. Kairo works out the chat's language from its messages and shows it as a small tag I can tap to switch. When I stop, it tidies the words into the message I meant, in the way I write in that chat. And when someone wrote last, up to three short replies sit above the box; a tap puts one in, it never sends.",
+          "It can read my messages to me too. With AirPods in, a new message is spoken in Kairo's voice as the notification itself: \"Anna says: running ten minutes late\". Otherwise there is Play on the notification, or \"Read my messages\" for every unread chat in a row, and I can answer by voice.",
         ],
       },
       {
         title: "Kairo in a chat",
         body: [
-          "Next to the mic in every WhatsApp chat sits Kairo's glass button. A tap opens a private panel that only I see, and there I can ask it to draft a reply, sum up the chat, check my calendar before I say yes to Saturday, translate, or anything else. It knows the chat it is in: the last 40 messages, who said what and the language, and it has all my usual tools.",
+          "Next to the mic in every WhatsApp chat sits Kairo's glass button. A tap opens a private panel that only I see, and there I can ask it to draft a reply, sum up the chat, check my calendar before I say yes to Saturday, translate, or anything else. It knows the chat it is in, who said what and in which language, and it has all my usual tools.",
           "A draft comes back as a card with three buttons: Put in box, Send, or Change, where I just say what to change. Kairo never sends a message by itself. Each time I open the panel it starts from a clean slate. And if I hold the button instead of tapping, I ask out loud and hear the answer read back.",
         ],
       },
       {
         title: "Health",
         body: [
-          "I log a meal with a photo, a sentence, a barcode or a picture of the label. Claude names the foods and guesses the grams, and the calories and protein come from the Swiss Food Composition Database, never from the model. If it can't tell whether something was fried in oil or butter, it asks. On the phone the camera reads a barcode or a nutrition label by itself. Next to what I ate sit the calories I burned, steps, sleep and weight, read from Apple Health in the background, and a week of all of it side by side.",
+          "I log a meal with a photo or a sentence, and on the phone the camera reads a barcode or a nutrition label by itself. Kairo names the foods and guesses the grams, and if it can't tell whether something was fried in oil or butter, it asks. The calories and protein come from real nutrition tables, never from the model. Next to what I ate sit the calories I burned, steps, sleep and weight, and a week of all of it side by side.",
         ],
       },
     ],
@@ -145,22 +144,28 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
     title: "On the phone, the watch and the Lock Screen",
     parts: [
       {
+        title: "The iPhone app",
+        body: [
+          "Every page is a native screen, and it opens instantly on what it showed last time while the fresh copy loads behind. Face ID when it opens, a passkey to sign in.",
+        ],
+      },
+      {
         title: "Lock Screen",
         body: [
-          "When Kairo works on something long, or I am on a call with it, the progress sits on the Lock Screen and in the Dynamic Island, and on my watch, the CarPlay dashboard and the Mac menu bar too. When it needs my OK to send something, Allow is right there: Face ID, done, without opening the app. Anything that goes out to other people asks first; the rest I can allow once, for one chat or for good.",
+          "When Kairo works on something long, or I am on a call with it, the progress sits on the Lock Screen and in the Dynamic Island, and on my watch, the CarPlay dashboard and the Mac menu bar too. When it needs my OK to send something, Allow is right there: Face ID, done, without opening the app.",
         ],
       },
       {
         title: "Notifications",
         body: [
-          "Only the things that matter make a sound: approvals, replies, WhatsApp, calls and briefings. On top of that come Kairo notices, a few a day at most, outside quiet hours: a meeting that moved, a mail someone is waiting on, a train to catch, a workout, arriving somewhere. Each one ends with a line saying why I am seeing it.",
+          "Only the things that matter make a sound: approvals, replies, WhatsApp, calls and briefings. A WhatsApp message says who wrote and on which account. On top of that come Kairo notices, a few a day at most, outside quiet hours: a meeting that moved, a mail someone is waiting on, a train to catch, a workout, arriving somewhere. Each one ends with a line saying why I am seeing it.",
           "Housekeeping stays silent. The badge counts what is really waiting on me, and when I read or handle something anywhere, on the Mac, the phone or the watch, its notification clears itself everywhere. A Test notifications button in Settings sends me one of every kind, so I can check them all in a minute.",
         ],
       },
       {
         title: "Buttons and Siri",
         body: [
-          "Widgets for today, what needs me and health. Controls I can put on the Action button, like Talk to Kairo or Read my messages. Siri phrases, chats in Spotlight, and a Focus filter that switches Kairo to Personal or Business with my Focus. The share sheet works without opening the app: I send a link or a photo, and the answer comes back as a notification.",
+          "Widgets for today, what needs me and health. Controls I can put on the Action button, like Talk to Kairo or Read my messages. Siri phrases, chats in Spotlight, and a Focus filter that switches Kairo to Personal or Business with my Focus. And \"Kairo\" sits in the share sheet of every app: I send a link, some text or photos to ask about, and the answer comes back as a notification without opening the app, or I save a link for later in one tap.",
         ],
       },
       {
@@ -183,19 +188,13 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "Two spaces",
         body: [
-          "Personal and Business, with one switch at the top. Each space has its own mailboxes, WhatsApp account, chats, drafts, goals and memories, and Kairo checks every single action against the space it belongs to.",
+          "Personal and Business, with one switch at the top. Each space has its own mailboxes, WhatsApp account, chats, drafts, goals and memories.",
         ],
       },
       {
         title: "Small jobs",
         body: [
-          "The real thinking stays on Claude. The small, quick jobs go to a fast OpenAI model instead: tidying a dictation, reply suggestions, the short spoken summaries for the watch, Siri and the Lock Screen, read-aloud text that sounds natural, chat titles, and a yes or no on whether something deserves a notice. Answers come back in about half a second, and it costs a few cents a day.",
-        ],
-      },
-      {
-        title: "The iPhone app",
-        body: [
-          "Every page is a native screen now, in Apple's Liquid Glass, and it opens instantly on what it showed last time while the fresh copy loads behind. Face ID when it opens, a passkey to sign in, and \"Kairo\" in the share sheet of every app: send a link, some text or photos to ask about, or save a link for later in one tap.",
+          "The real thinking stays on Claude. The small, quick jobs go to a fast model instead: tidying a dictation, reply suggestions, the short spoken summaries for the watch, Siri and the Lock Screen, read-aloud text that sounds natural, chat titles, and a yes or no on whether something deserves a notice. Answers come back in about half a second.",
         ],
       },
     ],
