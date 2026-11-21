@@ -10,6 +10,7 @@ import { CONTRIBUTOR_ROLE, statusLabel, workJsonLd, workMetadata, workPath } fro
 import { FILM_SIZE, filmPaths, getFilm } from "@/lib/films"
 import { ProductFilm } from "@/components/site/product-film"
 import { NeonduckDiagram } from "@/components/site/neonduck-diagram"
+import { DaffySection } from "@/components/site/daffy-section"
 import { DbrainDiagram } from "@/components/site/dbrain-diagram"
 
 export const dynamicParams = false
@@ -233,6 +234,8 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                   <p key={i}>{para}</p>
                 ))}
               </div>
+
+              {p.slug === "neonduck" ? <DaffySection /> : null}
 
               {film?.second ? (
                 <section aria-labelledby="second-film-title" className="mt-20">

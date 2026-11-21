@@ -637,6 +637,7 @@ export const PRODUCTS: Product[] = [
       "With Babytalk, a parent's voice can tell the bedtime story even when the parent is in another room or in a meeting. It plays stories, songs and short lessons that fit the child's age, narrated in the parent's own cloned voice or a preset voice.",
       "Claude writes the story and lesson scripts on the server. ElevenLabs does the narration, the voice cloning, the songs and the speech-to-text search. The songs are really sung, and I love that. A small API sits in between, so no key is stored on the device.",
       "The app has a story library, songs in several languages, lesson topics made on demand, voice search, read-along sentence by sentence and a hands-free talk mode that is safe for children.",
+      "There is also a baby voice. A clone copies how you sounded when you recorded it, so if you read the sample calmly like an adult, the stories sound that way too. So you record a second sample of a minute or two the way you really talk to your baby: higher, slower, sing-song, with a smile in your voice. It is kept as a separate voice, so your normal one stays as it is, and the baby voice will be the standard voice in the app. The narration then runs slower and with more ups and downs while still sounding like you, and the stories are written the way you would say them, with short sentences, pauses, repetition, \"Splash!\" and \"Oh no!\", questions that wait for an answer, and cues like whispering, laughing or getting excited.",
     ],
     highlights: [
       "Narration in a parent's cloned voice or a preset voice",
@@ -644,6 +645,7 @@ export const PRODUCTS: Product[] = [
       "Voice search and sentence-level read-along",
       "A hands-free, child-safe talk mode",
       "An API proxy, so no key ships in the app",
+      "A baby voice, recorded in the sing-song way you talk to your child, which will be the standard voice",
     ],
     facts: [],
     stack: ["Swift 6", "SwiftUI", "SwiftData", "StoreKit 2", "XcodeGen", "Claude API", "ElevenLabs", "TypeScript", "Vercel"],
