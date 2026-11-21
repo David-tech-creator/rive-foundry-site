@@ -870,9 +870,8 @@ export const PRODUCTS: Product[] = [
 
 /**
  * Every product's logo, shown as an app-icon tile beside its name. The family
- * recipe site's tile is only the drawing from its logo, without the family
- * name, so that build stays anonymous. Dbrain's "D of records" was drawn for
- * this site on 2026-11-21.
+ * recipe site uses its "R." app icon (David's choice). Dbrain's "D of records"
+ * was drawn for this site on 2026-11-21 and David kept it.
  */
 const WITH_LOGO: ProductSlug[] = ["kairo", "neonduck", "lodestar", "lightbox", "dbrain", "haystack-os", "emineon", "haystack", "romandy-cto", "fde-club", "rive-foundry", "babytalk", "retouch-studio", "van-roye", "miradouro", "birth-announcement", "family-recipes"]
 for (const p of PRODUCTS) if ((WITH_LOGO as string[]).includes(p.slug)) p.logo = `/work/${p.slug}/logo.webp`
