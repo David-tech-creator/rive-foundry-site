@@ -17,6 +17,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Voice",
         body: [
           "A tap on the orb and we talk. A realtime voice model does the talking and hands every real question to the same Claude session, so it can check my calendar or write a message mid-sentence. In the iPhone app it keeps going with the screen locked, in my pocket.",
+          "On the iPhone a talk is a real phone call: it sits in the Dynamic Island, I end it from my AirPods, and another call puts it on hold. It works the other way round too. Kairo can ring me with the morning briefing, and an alarm can wake me straight into it: I tap Brief me and it starts talking.",
         ],
       },
       {
@@ -119,13 +120,51 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "WhatsApp",
         body: [
-          "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, voice notes with transcripts, replies and reactions. I can dictate and get the message I meant, or let it draft the reply from the conversation; either way it only fills the box until I tap Send. A new message arrives as a notification that says who wrote and on which account.",
+          "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, videos, voice notes with transcripts, replies and reactions. I can dictate and get the message I meant, or let it draft the reply from the conversation; either way it only fills the box until I tap Send. A new message arrives as a notification that says who wrote and on which account.",
+          "On the phone it behaves like the WhatsApp I know. While I dictate, the words appear as I speak, and Kairo tidies them in the chat's style when I stop. I hold the mic for a voice note, slide away to cancel or up to lock it, swipe a message to reply to it, and mute a chat in Kairo without touching WhatsApp. Opening a chat marks it read.",
+          "And it can read my messages to me. With AirPods in, a new message is spoken in Kairo's voice as the notification itself: \"Anna says: running ten minutes late\". Otherwise there is Play on the notification, or \"Read my messages\" for every unread chat in a row, and I can answer by voice.",
         ],
       },
       {
         title: "Health",
         body: [
-          "I log a meal with a photo, a sentence, a barcode or a picture of the label. Claude names the foods and guesses the grams, and the calories and protein come from the Swiss Food Composition Database, never from the model. If it can't tell whether something was fried in oil or butter, it asks. Next to what I ate sit the calories I burned, steps, sleep and weight from my watch and phone, and a week of all of it side by side.",
+          "I log a meal with a photo, a sentence, a barcode or a picture of the label. Claude names the foods and guesses the grams, and the calories and protein come from the Swiss Food Composition Database, never from the model. If it can't tell whether something was fried in oil or butter, it asks. On the phone the camera reads a barcode or a nutrition label by itself. Next to what I ate sit the calories I burned, steps, sleep and weight, read from Apple Health in the background, and a week of all of it side by side.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "On the phone, the watch and the Lock Screen",
+    parts: [
+      {
+        title: "Lock Screen",
+        body: [
+          "When Kairo works on something long, or I am on a call with it, the progress sits on the Lock Screen and in the Dynamic Island, and on my watch, the CarPlay dashboard and the Mac menu bar too. When it needs my OK to send something, Allow is right there: Face ID, done, without opening the app. Anything that goes out to other people asks first; the rest I can allow once, for one chat or for good.",
+        ],
+      },
+      {
+        title: "Notifications",
+        body: [
+          "Only the things that matter make a sound: approvals, replies, WhatsApp, calls and briefings. On top of that come Kairo notices, a few a day at most, outside quiet hours: a meeting that moved, a mail someone is waiting on, a train to catch, a workout, arriving somewhere. Each one ends with a line saying why I am seeing it.",
+          "Housekeeping stays silent. The badge counts what is really waiting on me, and when I read or handle something anywhere, on the Mac, the phone or the watch, its notification clears itself everywhere.",
+        ],
+      },
+      {
+        title: "Buttons and Siri",
+        body: [
+          "Widgets for today, what needs me and health. Controls I can put on the Action button, like Talk to Kairo or Read my messages. Siri phrases, chats in Spotlight, and a Focus filter that switches Kairo to Personal or Business with my Focus. The share sheet works without opening the app: I send a link or a photo, and the answer comes back as a notification.",
+        ],
+      },
+      {
+        title: "Apple Watch",
+        body: [
+          "A small app of its own on my Apple Watch Ultra that works over cellular with the phone at home. Tap, talk, and Kairo answers out loud. It also has a glance at my day, approvals I can allow from the wrist, complications, and Talk on the Action button.",
+        ],
+      },
+      {
+        title: "In the car",
+        body: [
+          "I have asked Apple for CarPlay as a voice app, so I can talk to Kairo while I drive. That request is still pending.",
         ],
       },
     ],
@@ -142,7 +181,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "The iPhone app",
         body: [
-          "Face ID when it opens, the voice screen, the camera and mic, and \"Kairo\" in the share sheet of every app: send a link, some text or photos to ask about, or save a link for later in one tap.",
+          "Every page is a native screen now, in Apple's Liquid Glass, and it opens instantly on what it showed last time while the fresh copy loads behind. Face ID when it opens, a passkey to sign in, and \"Kairo\" in the share sheet of every app: send a link, some text or photos to ask about, or save a link for later in one tap.",
         ],
       },
     ],

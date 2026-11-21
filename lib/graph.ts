@@ -283,8 +283,9 @@ export const PRODUCTS: Product[] = [
     story: [
       "I bought a Sony a7 and shot sunsets in Auto for way too long. The remote apps only give you buttons and the AI photo apps mostly give you advice, and I wanted an app that changes the settings for me. So I built Lodestar (still a working name). You describe the photo, for example \"portrait by the window, soft background\", and the phone connects to the camera's own Wi-Fi and suggests ISO, aperture, shutter, white balance and focus.",
       "When you tap, the settings go to the camera, and a setting only counts once the camera reads it back. Then the app takes the shot, downloads the JPEG and checks it with real measurements: histogram, clipping, sharpness and colour cast. If something is off, one tap fixes it and takes the photo again.",
-      "Only the phone talks to the camera, over SSH and PTP/IP with a host key pinned at pairing, and the camera credentials stay in the Keychain. An on-device engine answers every request first, so the app still works on a hill with no signal. When there is signal, a backend on Cloudflare in the EU improves the answer with the model the user picked (Claude, OpenAI, Gemini or an open model), and it only uses providers the user agreed to. Photos are never stored on a server.",
-      "The first version was a small Python MCP server. It connected the camera to Claude Desktop over USB-C with eight tools to read and change the settings, get live view, shoot and see the result as numbers a model can use. It worked well, so I rebuilt it for the phone and the camera's Wi-Fi, and I built SimCam, a simulated a7 V made from recorded camera traffic, so I don't need the real camera for every test. The MVP runs end to end against SimCam, the first checks on a real a7 V over Wi-Fi have passed, and the full device checklist is next.",
+      "Only the phone talks to the camera, over SSH and PTP/IP with a host key pinned at pairing, and the camera credentials stay in the Keychain. An on-device engine answers every request first, so the app still works on a hill with no signal. When there is signal, my own backend on a NAS at home improves the answer with the model the user picked (Claude, OpenAI, Gemini or an open model), and it only uses providers the user agreed to. On my phone it runs on my Claude subscription through the Claude Agent SDK, with OpenAI as the fallback, and the app says plainly which model answered. Photos are never stored on a server.",
+      "Lodestar now runs on my own iPhone as a signed development build. It joins the camera's Wi-Fi by itself, and I can talk to it. A live voice mode uses OpenAI's GPT-Live, and push-to-talk and spoken answers use OpenAI transcription and speech, with the phone's own voice as a fallback.",
+      "The first version was a small Python MCP server. It connected the camera to Claude Desktop over USB-C with eight tools to read and change the settings, get live view, shoot and see the result as numbers a model can use. It worked well, so I rebuilt it for the phone and the camera's Wi-Fi, and I built SimCam, a simulated a7 V made from recorded camera traffic, so I don't need the real camera for every test. The MVP runs end to end against SimCam, and the first checks on a real a7 V over Wi-Fi have passed.",
     ],
     highlights: [
       "The full loop: describe the shot, apply the settings, read them back from the camera, shoot, check the result, fix with one tap and reshoot",
@@ -293,11 +294,14 @@ export const PRODUCTS: Product[] = [
       "Choice of model: Claude, OpenAI, Gemini or an open model, sent only to providers the user approved",
       "An instant on-device suggestion for every request, with cloud refinement when there is signal",
       "The AI only acts during a turn the user started, and every photo needs a tap",
+      "Voice: live conversation with OpenAI GPT-Live, plus push-to-talk with OpenAI transcription and natural spoken answers",
+      "Runs on my Claude subscription through the Claude Agent SDK, with OpenAI as an announced fallback",
+      "Joins the camera's Wi-Fi automatically (Hotspot Configuration) on a signed iPhone build",
       "iPad layout with a fixed inspector panel; landscape viewfinder on iPhone",
       "First version: an MCP server for Claude Desktop with 8 tools over USB-C, showing exposure as text bars a model can read",
     ],
     facts: [],
-    stack: ["Swift 6", "SwiftUI", "SwiftNIO SSH", "PTP/IP", "TypeScript", "Cloudflare Workers", "Durable Objects", "Vercel AI SDK", "XcodeGen", "Python", "MCP (FastMCP)", "gphoto2"],
+    stack: ["Swift 6", "SwiftUI", "SwiftNIO SSH", "PTP/IP", "TypeScript", "Cloudflare Workers runtime (workerd, self-hosted)", "Durable Objects", "Vercel AI SDK", "Claude Agent SDK", "OpenAI GPT-Live", "WebRTC", "XcodeGen", "Python", "MCP (FastMCP)", "gphoto2"],
     platforms: ["iOS", "iPadOS", "macOS (MCP server)"],
     themes: ["agentic-ai", "human-in-the-loop", "grounding", "mcp-tool-use", "photography"],
     started: "2026-10",
@@ -366,7 +370,8 @@ export const PRODUCTS: Product[] = [
       "My personal and business WhatsApp, live inside the app: chats, groups, photos, voice notes with transcripts, replies and reactions",
       "Dictation that writes the message I meant, and drafts in my own voice; nothing goes out until I tap Send",
       "A notification for every new message, saying who wrote and on which account, and quiet for muted chats",
-      "Voice with the screen locked: a native iPhone call screen on OpenAI's realtime voice that hands the real work to Claude",
+      "Voice with the screen locked: a real phone call on OpenAI's realtime voice that hands the real work to Claude, and Kairo can ring me with the briefing",
+      "A fully native iPhone app, with approvals on the Lock Screen and the watch, Live Activities, widgets, Siri and an Apple Watch app",
       "Health: meals from a photo with real nutrition tables, plus steps, sleep, weight and calories from my watch and phone",
       "Two spaces, Personal and Business, with a wall that every tool call passes",
       "Morning briefings with one-tap actions, a morning AI paper, and a brief before each meeting",
@@ -374,8 +379,8 @@ export const PRODUCTS: Product[] = [
       "It cleans up after itself: briefings go after a week, the other things it writes on its own after two to four weeks",
     ],
     facts: [],
-    stack: ["Node.js (plain ESM)", "Claude Agent SDK", "SQLite", "Playwright", "OpenAI realtime voice (WebRTC)", "Gemini Live", "Swift and SwiftUI", "Metal", "WebKit", "Web Push", "Docker", "Synology NAS", "Cloudflare Tunnel", "MCP"],
-    platforms: ["iOS", "Web (PWA)"],
+    stack: ["Node.js (plain ESM)", "Claude Agent SDK", "SQLite", "Playwright", "OpenAI realtime voice (WebRTC)", "Gemini Live", "Swift and SwiftUI", "watchOS", "APNs", "Metal", "WebKit", "Web Push", "Docker", "Synology NAS", "Cloudflare Tunnel", "MCP"],
+    platforms: ["iOS", "watchOS", "Web (PWA)"],
     themes: ["agentic-ai", "human-in-the-loop", "self-hosting", "mcp-tool-use"],
     started: "2026-10",
     image: img("kairo"),
@@ -960,6 +965,7 @@ export const EDGES: Edge[] = [
  * with the month they happened; dates match `started` on the products.
  */
 export const MISSION_LOG: Array<{ date: string; label: string; text: string; href?: string }> = [
+  { date: "2026-11-21", label: "Nov 2026", text: "Made Kairo a fully native iPhone app, with an Apple Watch app, approvals on the Lock Screen and WhatsApp read aloud in my AirPods.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Gave my private assistant its own name, Kairo, with an iPhone app, live WhatsApp and a voice that works with the screen locked.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Launched FDE Club, a community for forward deployed engineers in Switzerland, built by 122 AI agents.", href: "/work/fde-club" },
   { date: "2026-11", label: "Nov 2026", text: "Rebuilt my recruiting tool as Haystack OS, a lean ATS and CRM where Claude runs on my own subscription.", href: "/work/haystack-os" },
@@ -998,7 +1004,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "What is Kairo?",
-    a: "Kairo is the private AI assistant I built for myself, before Neonduck: I made it for me first, and Neonduck is the public version that grew out of it. It runs on my own Claude subscription on a server at home, reads and answers my personal and business WhatsApp, tracks my meals and health, and talks with me by voice on my iPhone. It asks before it sends, deletes, pays or calls. It is for me alone, so there is nothing to sign up for.",
+    a: "Kairo is the private AI assistant I built for myself, before Neonduck: I made it for me first, and Neonduck is the public version that grew out of it. It runs on my own Claude subscription on a server at home, reads and answers my personal and business WhatsApp, tracks my meals and health, and talks with me by voice on my iPhone and my Apple Watch. It asks before it sends, deletes, pays or calls. It is for me alone, so there is nothing to sign up for.",
   },
   {
     q: "What is Lodestar?",

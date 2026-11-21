@@ -59,7 +59,7 @@ const NEIGHBOURS: Array<[string, string]> = [
 
 const CLOUD: Array<[string, string]> = [
   ["Claude", "my own subscription"],
-  ["OpenAI", "realtime voice, pictures"],
+  ["OpenAI", "voice, dictation, pictures"],
   ["Gemini Live", "the other voice"],
 ]
 
@@ -77,20 +77,21 @@ export function KairoDiagram() {
         >
           <title id="kairo-diagram-title">How Kairo is set up</title>
           <desc id="kairo-diagram-desc">
-            The iPhone app and the web app reach a home server only through a signed-in tunnel. On that server the
+            The iPhone app, the Apple Watch app and the web app reach a home server only through a signed-in tunnel. On that server the
             Kairo server runs the Claude Agent SDK, with approval cards, a wall between personal and business, a
             SQLite database, its own browser, a scheduler and a daily clean-up. Next to it on the same server are
             Dbrain, two WhatsApp bridges, health services and phone calls. Claude, OpenAI and Gemini Live are reached
-            in the cloud. Notifications go back out to the phone and the Mac.
+            in the cloud. Notifications go back out to the phone, the watch and the Mac.
           </desc>
 
           {/* my devices */}
           <Label x={40} y={60}>
-            My phone and Mac
+            My phone, watch and Mac
           </Label>
-          <Box x={40} y={84} w={200} h={84} title="iPhone app" sub="voice, Face ID, glass" accent />
+          <Box x={40} y={84} w={200} h={84} title="iPhone app" sub="native, Lock Screen, voice" accent />
           <Box x={40} y={196} w={200} h={64} title="Web app" sub="Home Screen or browser" />
           <Box x={40} y={288} w={200} h={64} title="Notifications" sub="who wrote, which account" />
+          <Box x={40} y={380} w={200} h={64} title="Apple Watch" sub="talk over cellular" />
 
           {/* the tunnel */}
           <Box x={270} y={84} w={120} h={84} title="Tunnel" sub="signed in only" />
@@ -129,6 +130,8 @@ export function KairoDiagram() {
           <Flow d="M240 126 L270 126" />
           <Flow d="M240 228 C 255 228, 255 140, 270 140" />
           <Flow d="M390 126 C 420 126, 420 148, 450 148" />
+          {/* the watch talks to Kairo on its own */}
+          <Flow d="M240 412 C 360 412, 360 300, 360 168" />
           {/* notifications come back out */}
           <Flow d="M330 168 C 330 320, 290 320, 240 320" />
           {/* inside the server */}

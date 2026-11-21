@@ -18,7 +18,7 @@ const PARTS: Array<{ title: string; body: string[] }> = [
   {
     title: "Asking before it acts",
     body: [
-      "Reading is free. Changing something shows an approval card, and anything that sends, deletes, pays or calls asks every single time: I can never tick \"always allow\" for those. Jobs that run while I sleep, like the morning briefing, may only read.",
+      "Reading is free. Changing something shows an approval card, and anything that sends, deletes, pays or calls asks every single time: I can never tick \"always allow\" for those. Jobs that run while I sleep, like the morning briefing, may only read. An approval also arrives as a time-sensitive notification, and Allow on the Lock Screen or the watch needs Face ID.",
       "Personal and business are two spaces with a wall between them. Every chat, draft and memory belongs to one side, and every tool call is checked against the chat's own side before it runs, so a business mail can't go out from my personal account. Saved passwords and my card are encrypted, and Kairo types them into a form without the model ever seeing them.",
     ],
   },
@@ -26,14 +26,15 @@ const PARTS: Array<{ title: string; body: string[] }> = [
     title: "WhatsApp",
     body: [
       "Two small bridges run next to Kairo on the same server, one for my personal number and one for WhatsApp Business. Kairo reads their chats and gets every new message the moment it arrives, so the WhatsApp page is live: groups, photos, voice notes with transcripts, replies and reactions. Opening a chat in Kairo doesn't send a read receipt; that only happens when I answer.",
-      "For dictation, my voice is transcribed first, then Claude writes out the message I meant, using my own earlier messages in that chat as its style guide. For drafts, it reads the last part of the conversation and writes the next message as me. Both only fill the box. Nothing leaves until I tap Send.",
-      "Notifications go out as web push. Messages that arrive together in one chat become one notification, which replaces the previous one, and muted chats, my own messages and the chat I'm reading stay quiet.",
+      "For dictation, the app streams my voice to Kairo, which relays it to OpenAI's realtime transcription, so the words show up while I speak. When I stop, Claude tidies them into the message I meant, using my own earlier messages in that chat as its style guide. For drafts, it reads the last part of the conversation and writes the next message as me. Both only fill the box. Nothing leaves until I tap Send.",
+      "Notifications go to the iPhone through Apple's push service, and to the web app as web push. A notification service extension on the phone turns a message into a proper conversation notification with the sender's picture, and with AirPods in it swaps the sound for the message spoken in Kairo's OpenAI voice. A content extension puts a Play button on the expanded notification. Messages that arrive together in one chat become one notification, and muted chats, my own messages and the chat I'm reading stay quiet. When something is read anywhere, a silent push clears it from the phone and sets the badge.",
     ],
   },
   {
     title: "Voice",
     body: [
-      "Voice mode is a realtime model doing the talking, OpenAI or Gemini Live, and handing every real question to the chat's Claude session. In the iPhone app the call runs natively over WebRTC with background audio, so I can lock the screen, put the phone in my pocket and keep talking. Approvals still need a tap, voice or no voice.",
+      "Voice mode is a realtime model doing the talking, OpenAI or Gemini Live, and handing every real question to the chat's Claude session. In the iPhone app the call runs natively over WebRTC, and the phone treats it as a real call through LiveCommunicationKit, so I can lock the screen, put the phone in my pocket and keep talking. For the briefing, Kairo sends a VoIP push that rings like a call, and AlarmKit wakes me into it. Approvals still need a tap, voice or no voice.",
+      "The watch can't hold a WebRTC call for long, so it does push-to-talk instead: it records a short clip, sends it over plain HTTPS, and plays back Kairo's spoken answer.",
       "The orb you talk to is a drop of glass rendered live: Metal in the app, WebGL in the browser, at 60 frames a second, moving with my voice and with Kairo's.",
     ],
   },
@@ -46,7 +47,8 @@ const PARTS: Array<{ title: string; body: string[] }> = [
   {
     title: "The iPhone app",
     body: [
-      "A SwiftUI app around the web app, with native parts where they matter: Face ID when it opens, the voice screen, the camera and mic, the share sheet, haptics and Apple's Liquid Glass on the controls. A new server version changes the app at once, without a new install. I install it on my own phone from Xcode, so it never went near the App Store.",
+      "A fully native SwiftUI app in Apple's Liquid Glass. Every screen reads the same JSON routes as the web app, so the logic stays on the server and a new server version changes the app at once. Each screen opens on its copy in a disk cache and refreshes behind. Each device signs in with its own token in the Keychain, and I can sign in with a passkey.",
+      "Around the app sit its extensions: the share sheet, widgets and Controls, Live Activities, a notification service and a notification content extension, and the Apple Watch app with its complications. They share the device token through the Keychain and a small App Group for the spoken notification sounds. Health data comes in through HealthKit with background delivery. Since my developer account went paid, an install lasts a year. I still install it on my own phone from Xcode, so it never went near the App Store.",
     ],
   },
   {
@@ -77,7 +79,7 @@ export function KairoSection() {
       </div>
       <p className="mt-10 text-sm text-muted-foreground">
         Runs on Node.js, the Claude Agent SDK with Claude Sonnet and Opus, SQLite, Playwright, OpenAI and Gemini Live
-        for voice, Swift and Metal on the iPhone, Docker on a home NAS, and Dbrain for memory. Single user, started
+        for voice and transcription, Swift, SwiftUI and Metal on the iPhone and the Apple Watch, Docker on a home NAS, and Dbrain for memory. Single user, started
         October 2026. Kairo is private, so there is nothing to link to.
       </p>
     </section>
