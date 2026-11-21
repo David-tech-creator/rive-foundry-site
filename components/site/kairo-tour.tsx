@@ -121,8 +121,16 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "WhatsApp",
         body: [
           "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, videos, voice notes with transcripts, replies and reactions. I can dictate and get the message I meant, or let it draft the reply from the conversation; either way it only fills the box until I tap Send. A new message arrives as a notification that says who wrote and on which account.",
-          "On the phone it behaves like the WhatsApp I know. While I dictate, the words appear as I speak, and Kairo tidies them in the chat's style when I stop. I hold the mic for a voice note, slide away to cancel or up to lock it, swipe a message to reply to it, and mute a chat in Kairo without touching WhatsApp. Opening a chat marks it read.",
+          "On the phone it behaves like the WhatsApp I know. I hold the mic for a voice note, slide away to cancel or up to lock it, swipe a message to reply to it, and mute a chat in Kairo without touching WhatsApp. Opening a chat reads it, blue ticks included, just like WhatsApp.",
+          "Dictation works like in the Claude app: the words appear while I speak, and X throws them away, Stop leaves them in the box and Send sends. Kairo works out the chat's language from its messages and shows it as a small tag I can tap to switch. When I stop, it tidies the words in the way I write in that chat, in about half a second. And when someone wrote last, up to three short replies sit above the box; a tap puts one in, it never sends.",
           "And it can read my messages to me. With AirPods in, a new message is spoken in Kairo's voice as the notification itself: \"Anna says: running ten minutes late\". Otherwise there is Play on the notification, or \"Read my messages\" for every unread chat in a row, and I can answer by voice.",
+        ],
+      },
+      {
+        title: "Kairo in a chat",
+        body: [
+          "Next to the mic in every WhatsApp chat sits Kairo's glass button. A tap opens a private panel that only I see, and there I can ask it to draft a reply, sum up the chat, check my calendar before I say yes to Saturday, translate, or anything else. It knows the chat it is in: the last 40 messages, who said what and the language, and it has all my usual tools.",
+          "A draft comes back as a card with three buttons: Put in box, Send, or Change, where I just say what to change. Kairo never sends a message by itself. Each time I open the panel it starts from a clean slate. And if I hold the button instead of tapping, I ask out loud and hear the answer read back.",
         ],
       },
       {
@@ -146,7 +154,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Notifications",
         body: [
           "Only the things that matter make a sound: approvals, replies, WhatsApp, calls and briefings. On top of that come Kairo notices, a few a day at most, outside quiet hours: a meeting that moved, a mail someone is waiting on, a train to catch, a workout, arriving somewhere. Each one ends with a line saying why I am seeing it.",
-          "Housekeeping stays silent. The badge counts what is really waiting on me, and when I read or handle something anywhere, on the Mac, the phone or the watch, its notification clears itself everywhere.",
+          "Housekeeping stays silent. The badge counts what is really waiting on me, and when I read or handle something anywhere, on the Mac, the phone or the watch, its notification clears itself everywhere. A Test notifications button in Settings sends me one of every kind, so I can check them all in a minute.",
         ],
       },
       {
@@ -176,6 +184,12 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Two spaces",
         body: [
           "Personal and Business, with one switch at the top. Each space has its own mailboxes, WhatsApp account, chats, drafts, goals and memories, and Kairo checks every single action against the space it belongs to.",
+        ],
+      },
+      {
+        title: "Small jobs",
+        body: [
+          "The real thinking stays on Claude. The small, quick jobs go to a fast OpenAI model instead: tidying a dictation, reply suggestions, the short spoken summaries for the watch, Siri and the Lock Screen, read-aloud text that sounds natural, chat titles, and a yes or no on whether something deserves a notice. Answers come back in about half a second, and it costs a few cents a day.",
         ],
       },
       {

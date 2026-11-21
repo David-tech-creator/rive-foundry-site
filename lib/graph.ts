@@ -368,7 +368,8 @@ export const PRODUCTS: Product[] = [
     ],
     highlights: [
       "My personal and business WhatsApp, live inside the app: chats, groups, photos, voice notes with transcripts, replies and reactions",
-      "Dictation that writes the message I meant, and drafts in my own voice; nothing goes out until I tap Send",
+      "Live dictation that writes the message I meant, and drafts in my own voice; nothing goes out until I tap Send",
+      "Kairo inside every WhatsApp chat: a private panel to draft, sum up, translate or check my calendar, knowing the chat",
       "A notification for every new message, saying who wrote and on which account, and quiet for muted chats",
       "Voice with the screen locked: a real phone call on OpenAI's realtime voice that hands the real work to Claude, and Kairo can ring me with the briefing",
       "A fully native iPhone app, with approvals on the Lock Screen and the watch, Live Activities, widgets, Siri and an Apple Watch app",
@@ -379,14 +380,14 @@ export const PRODUCTS: Product[] = [
       "It cleans up after itself: briefings go after a week, the other things it writes on its own after two to four weeks",
     ],
     facts: [],
-    stack: ["Node.js (plain ESM)", "Claude Agent SDK", "SQLite", "Playwright", "OpenAI realtime voice (WebRTC)", "Gemini Live", "Swift and SwiftUI", "watchOS", "APNs", "Metal", "WebKit", "Web Push", "Docker", "Synology NAS", "Cloudflare Tunnel", "MCP"],
+    stack: ["Node.js (plain ESM)", "Claude Agent SDK", "SQLite", "Playwright", "OpenAI realtime voice (WebRTC)", "OpenAI realtime transcription", "Gemini Live", "Swift and SwiftUI", "watchOS", "APNs", "Metal", "WebKit", "Web Push", "Docker", "Synology NAS", "Cloudflare Tunnel", "MCP"],
     platforms: ["iOS", "watchOS", "Web (PWA)"],
     themes: ["agentic-ai", "human-in-the-loop", "self-hosting", "mcp-tool-use"],
     started: "2026-10",
     image: img("kairo"),
     screens: [
-      { src: "/work/kairo/screen-01-places.webp", alt: "Three phone screens of Kairo in dark mode: the home screen with today's events, the WhatsApp chat list with unread counts, and Health with calories eaten and protein as rings.", caption: "The three places I open most: home with today at a glance, my WhatsApp, and Health.", width: 1600, height: 1000 },
-      { src: "/work/kairo/screen-02-moments.webp", alt: "Three phone screens: the morning briefing with the day on an hour timeline, a WhatsApp chat with a drafted reply in the message box, and a week of calories eaten and burned as bars.", caption: "The morning briefing, a reply Kairo drafted in the chat's own tone and left in the box for me, and the week in numbers.", width: 1600, height: 1000 },
+      { src: "/work/kairo/screen-01-places.webp", alt: "Three iPhone screens of the native Kairo app in dark mode: Home with a greeting, the next events and cards for what needs me, a WhatsApp chat with Kairo's private panel showing a drafted reply with Put in box, Change and Send, and Health with calories eaten and protein as rings.", caption: "The native app: home with the day at a glance, Kairo drafting a WhatsApp reply inside the chat, and Health.", width: 1600, height: 1000 },
+      { src: "/work/kairo/screen-02-moments.webp", alt: "Three iPhone screens: a WhatsApp chat with live dictation, the spoken words appearing in the message bar with the language tag EN and buttons to cancel, stop and send, a Kairo chat that checked the calendar and asks my OK before booking the dentist, and the morning AI paper.", caption: "Dictating a WhatsApp reply as I speak, Kairo waiting for my OK before it books something, and my morning paper.", width: 1600, height: 1000 },
     ],
     screensNote: "A local copy with made-up people, chats and meals.",
     imageAlt: "Azure illustration of an astronaut on a rock talking to a floating drop of liquid glass that glows like a voice orb",
@@ -965,7 +966,7 @@ export const EDGES: Edge[] = [
  * with the month they happened; dates match `started` on the products.
  */
 export const MISSION_LOG: Array<{ date: string; label: string; text: string; href?: string }> = [
-  { date: "2026-11-21", label: "Nov 2026", text: "Made Kairo a fully native iPhone app, with an Apple Watch app, approvals on the Lock Screen and WhatsApp read aloud in my AirPods.", href: "/work/kairo" },
+  { date: "2026-11-21", label: "Nov 2026", text: "Made Kairo a fully native iPhone app, with an Apple Watch app, approvals on the Lock Screen and WhatsApp read aloud in my AirPods, and put Kairo inside every WhatsApp chat, with live dictation and quick jobs on a fast OpenAI model.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Gave my private assistant its own name, Kairo, with an iPhone app, live WhatsApp and a voice that works with the screen locked.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Launched FDE Club, a community for forward deployed engineers in Switzerland, built by 122 AI agents.", href: "/work/fde-club" },
   { date: "2026-11", label: "Nov 2026", text: "Rebuilt my recruiting tool as Haystack OS, a lean ATS and CRM where Claude runs on my own subscription.", href: "/work/haystack-os" },

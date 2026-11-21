@@ -25,9 +25,10 @@ const PARTS: Array<{ title: string; body: string[] }> = [
   {
     title: "WhatsApp",
     body: [
-      "Two small bridges run next to Kairo on the same server, one for my personal number and one for WhatsApp Business. Kairo reads their chats and gets every new message the moment it arrives, so the WhatsApp page is live: groups, photos, voice notes with transcripts, replies and reactions. Opening a chat in Kairo doesn't send a read receipt; that only happens when I answer.",
-      "For dictation, the app streams my voice to Kairo, which relays it to OpenAI's realtime transcription, so the words show up while I speak. When I stop, Claude tidies them into the message I meant, using my own earlier messages in that chat as its style guide. For drafts, it reads the last part of the conversation and writes the next message as me. Both only fill the box. Nothing leaves until I tap Send.",
-      "Notifications go to the iPhone through Apple's push service, and to the web app as web push. A notification service extension on the phone turns a message into a proper conversation notification with the sender's picture, and with AirPods in it swaps the sound for the message spoken in Kairo's OpenAI voice. A content extension puts a Play button on the expanded notification. Messages that arrive together in one chat become one notification, and muted chats, my own messages and the chat I'm reading stay quiet. When something is read anywhere, a silent push clears it from the phone and sets the badge.",
+      "Two small bridges run next to Kairo on the same server, one for my personal number and one for WhatsApp Business. Kairo reads their chats and gets every new message the moment it arrives, so the WhatsApp page is live: groups, photos, voice notes with transcripts, replies and reactions. Opening a chat in Kairo marks it read on WhatsApp too, so the other side sees blue ticks, and so do messages that arrive while it is open.",
+      "For dictation, the app streams my voice as small audio frames over a WebSocket to Kairo, which relays them to OpenAI's realtime transcription, so the words show up while I speak and the OpenAI key never leaves my server. Before it starts, Kairo reads the chat's recent messages and, when one language clearly leads, tells the transcriber to expect it; otherwise OpenAI detects it. As soon as the words settle, the fast model tidies them into the message I meant, in my tone in that chat. If it is slow, I get the words as spoken. Dictation only fills the box. Nothing leaves until I tap Send.",
+      "Kairo in a chat is an ordinary Kairo session, one per WhatsApp chat, titled after it and kept in the right space. Each question goes in with the chat's last 40 messages, its name, whether it is a group and its language, but only my question is saved in the record. That session gets one extra tool, whatsapp_draft, which shows the draft as a card in the panel, and its WhatsApp sending tools are switched off, so the only way a message leaves is my tap on Send. Any other tool that reaches people still asks first. The session stays silent: no notifications, no unread marks, no Live Activity.",
+      "Notifications go to the iPhone through Apple's push service, and to the web app as web push. A notification service extension on the phone turns a message into a proper conversation notification with the sender's picture, and with AirPods in it swaps the sound for the message spoken in Kairo's OpenAI voice. A content extension puts a Play button on the expanded notification. Messages that arrive together in one chat become one notification, and muted chats, my own messages and the chat I'm reading stay quiet. When something is read or handled anywhere, a silent push, gathered over a second or two, sets the badge and removes the notifications that no longer matter. A test route sends one sample of every kind to the phone that asked, Live Activity included.",
     ],
   },
   {
@@ -36,6 +37,13 @@ const PARTS: Array<{ title: string; body: string[] }> = [
       "Voice mode is a realtime model doing the talking, OpenAI or Gemini Live, and handing every real question to the chat's Claude session. In the iPhone app the call runs natively over WebRTC, and the phone treats it as a real call through LiveCommunicationKit, so I can lock the screen, put the phone in my pocket and keep talking. For the briefing, Kairo sends a VoIP push that rings like a call, and AlarmKit wakes me into it. Approvals still need a tap, voice or no voice.",
       "The watch can't hold a WebRTC call for long, so it does push-to-talk instead: it records a short clip, sends it over plain HTTPS, and plays back Kairo's spoken answer.",
       "The orb you talk to is a drop of glass rendered live: Metal in the app, WebGL in the browser, at 60 frames a second, moving with my voice and with Kairo's.",
+    ],
+  },
+  {
+    title: "Small jobs on a fast model",
+    body: [
+      "Anything small without tools goes to one cheap, fast OpenAI model, gpt-6-luna, with reasoning switched off, a small answer limit, strict JSON where a job needs fields and nothing stored on OpenAI's side. It tidies dictation, writes the reply suggestions, the spoken summaries for the watch, Siri and the Lock Screen, natural read-aloud text and chat titles, and says yes or no on whether a mail or workout deserves a notice. While Kairo is in use, the server keeps one warm keep-alive connection to OpenAI open, and the jobs I sit waiting for go out on the priority tier. Most answers take about half a second, and the whole thing costs cents a day.",
+      "Every job has a hard time limit and its own fallback when the model is slow or down: the first sentences instead of a summary, the words as spoken instead of a tidy, no suggestions at all. Only timings go in the log, never content.",
     ],
   },
   {
@@ -79,7 +87,7 @@ export function KairoSection() {
       </div>
       <p className="mt-10 text-sm text-muted-foreground">
         Runs on Node.js, the Claude Agent SDK with Claude Sonnet and Opus, SQLite, Playwright, OpenAI and Gemini Live
-        for voice and transcription, Swift, SwiftUI and Metal on the iPhone and the Apple Watch, Docker on a home NAS, and Dbrain for memory. Single user, started
+        for voice and transcription, a fast OpenAI model for small jobs, Swift, SwiftUI and Metal on the iPhone and the Apple Watch, Docker on a home NAS, and Dbrain for memory. Single user, started
         October 2026. Kairo is private, so there is nothing to link to.
       </p>
     </section>
