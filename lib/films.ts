@@ -128,6 +128,13 @@ export const FILMS: Record<string, Film> = {
     description: "The opening film and the red block that prints the name, the home page asking what's cooking tonight, a recipe with its method and a note, cook mode, the recipe index and adding a recipe.",
     note: "Filmed on a demo copy with a made-up reader and note, a neutral name and no albums.",
     published: "2026-11-20",
+    second: {
+      name: "guide",
+      title: "The kitchen guide",
+      seconds: 26,
+      description: "Cook mode on a phone with the kitchen guide switched on: it greets the cook, turns to the next step when asked, sets a four-minute shallot timer by voice and answers how much wine goes in.",
+      note: "Filmed on a demo copy with a made-up reader. The film has no sound; the bars move with the guide's voice in the real app.",
+    },
   },
   babytalk: {
     slug: "babytalk",

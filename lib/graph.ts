@@ -680,7 +680,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Babytalk is an iOS app for young children: stories, songs and lessons written by Claude and narrated in a parent's cloned voice or a preset one.",
     story: [
-      "With Babytalk, a parent's voice can tell the bedtime story even when the parent is in another room or in a meeting. It plays stories, songs and short lessons that fit the child's age, narrated in the parent's own cloned voice or a preset voice.",
+      "Babytalk is made to be listened to together. Paediatricians advise that young children learn language from back-and-forth with the people who care for them, not from a device on its own, so the app is built for a parent on the sofa or at the bedside with the child, not as a babysitter. It plays stories, songs and short lessons that fit the child's age, narrated in the parent's own cloned voice or a preset one, so the words the child hears are in a voice they know, and there is always something to point at, repeat and talk about.",
       "Claude writes the story and lesson scripts on the server. ElevenLabs does the narration, the voice cloning, the songs and the speech-to-text search. The songs are really sung, and I love that. A small API sits in between, so no key is stored on the device.",
       "The app has a story library, songs in several languages, lesson topics made on demand, voice search, read-along sentence by sentence and a hands-free talk mode that is safe for children.",
       "There is also a baby voice. A clone copies how you sounded when you recorded it, so if you read the sample calmly like an adult, the stories sound that way too. So you record a second sample of a minute or two the way you really talk to your baby: higher, slower, sing-song, with a smile in your voice. It is kept as a separate voice, so your normal one stays as it is, and the baby voice will be the standard voice in the app. The narration then runs slower and with more ups and downs while still sounding like you, and the stories are written the way you would say them, with short sentences, pauses, repetition, \"Splash!\" and \"Oh no!\", questions that wait for an answer, and cues like whispering, laughing or getting excited.",
@@ -810,6 +810,7 @@ export const PRODUCTS: Product[] = [
     story: [
       "Our family recipes lived in a PDF, a few notebooks and several people's heads. I wanted one place everyone in the family actually enjoys opening, loud enough to read from across the kitchen.",
       "It opens with a short film of ingredients flying across the page, then a red block prints the name and the sheet lifts. The home page greets you and asks what's cooking tonight, with one pick and a Shuffle button, and the recipes sit in four colour blocks. Each recipe scales its quantities, ticks off ingredients, runs timers from the method and takes notes on any step. Cook mode goes full screen and dark, one large step at a time, with the screen kept awake.",
+      "Cook mode can also talk. One tap on \"Talk me through it\" starts a spoken conversation with a kitchen guide that knows the whole recipe, the family's notes and which step you are on. Your hands stay in the pan: you say \"next\" and the page turns, \"set four minutes for the shallot\" and a named timer starts, \"how much wine again?\" and it answers with the amount for the quantity you are cooking. When a timer goes off it tells you what comes next, and if you hold the phone over the pan it looks at a photo and says whether it needs longer. It speaks your language, keeps its answers short and stops the moment you talk over it, with captions on screen for when the extractor fan is on.",
       "To add a recipe, you photograph a handwritten card or a cookbook page, say it out loud in your own language, or type it. Claude lays it out as a recipe and flags anything it could not read instead of guessing. You correct it and publish. The site is private, so I don't link to it here.",
     ],
     highlights: [
@@ -819,13 +820,16 @@ export const PRODUCTS: Product[] = [
       "Add a recipe by photographing a card, saying it out loud or typing it",
       "Never invents a quantity: anything unclear is flagged to check",
       "Cook mode with one large step at a time, timers from the method and the screen kept awake",
+      "A live, hands-free kitchen guide in cook mode that turns the pages, reads each step and answers questions",
+      "Named timers set by voice, with a spoken reminder of what to do when one goes off",
+      "Looks at a photo of the pan and says whether it is done",
       "Quantities that scale properly, including ranges",
       "Saved recipes and notes on any step",
       "Search that forgives missing accents",
       "Recipes you have opened still work offline",
     ],
     facts: [],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Postgres (Neon)", "Vercel Blob", "Claude API", "OpenAI speech-to-text", "fal.ai", "Vercel"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Postgres (Neon)", "Vercel Blob", "Claude API", "OpenAI speech-to-text", "OpenAI Realtime API", "fal.ai", "Vercel"],
     platforms: ["Web"],
     themes: ["family"],
     started: "2025-05",
