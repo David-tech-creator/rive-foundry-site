@@ -64,10 +64,10 @@ export const FILMS: Record<string, Film> = {
   },
   kairo: {
     slug: "kairo",
-    seconds: 24,
+    seconds: 20,
     description:
-      "Kairo on three phones: the morning briefing opens and scrolls from the day's hours to what needs me; a WhatsApp chat gets a new message live and Kairo drafts the reply; Health scrolls from today's meals to the week.",
-    note: "Filmed on a local copy with made-up people, chats and meals. The draft is a real one, written by Claude from the chat.",
+      "Kairo on three phones, in the native iPhone app: the morning briefing scrolls from the day's hours to what needs me; in a WhatsApp chat Kairo drafts the reply as a card I can put in the box, change or send; Health scrolls from today's meals to the body figures.",
+    note: "Filmed in the iPhone simulator with made-up people, chats and meals.",
     published: "2026-11-21",
     smallAspect: PHONE_CROP,
     second: {
