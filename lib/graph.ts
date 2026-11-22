@@ -373,7 +373,7 @@ export const PRODUCTS: Product[] = [
       "Messages read aloud in my AirPods",
       "Voice as a real phone call, with the screen locked",
       "Kairo in the car, by voice through CarPlay",
-      "A native iPhone app and an Apple Watch app",
+      "A native iPhone app, and an Apple Watch app I talk to hands-free, even with the phone at home",
       "Approvals on the Lock Screen, with Face ID",
       "Meals from a photo, with numbers from real nutrition tables",
       "Two spaces, Personal and Business, with a wall between them",
@@ -390,6 +390,7 @@ export const PRODUCTS: Product[] = [
     screens: [
       { src: "/work/kairo/screen-01-places.webp", alt: "Three iPhone screens of the native Kairo app in dark mode: Home with a greeting, the next events and cards for what needs me, a WhatsApp chat with Kairo's private panel showing a drafted reply with Put in box, Change and Send, and Health with calories eaten and protein as rings.", caption: "The native app: home with the day at a glance, Kairo drafting a WhatsApp reply inside the chat, and Health.", width: 1600, height: 1000 },
       { src: "/work/kairo/screen-02-moments.webp", alt: "Three iPhone screens: a WhatsApp chat with live dictation, the spoken words appearing in the message bar with the language tag EN and buttons to cancel, stop and send, a Kairo chat that checked the calendar and asks my OK before booking the dentist, and the morning AI paper.", caption: "Dictating a WhatsApp reply as I speak, Kairo waiting for my OK before it books something, and my morning paper.", width: 1600, height: 1000 },
+      { src: "/work/kairo/screen-03-watch.webp", alt: "Five Apple Watch screens of Kairo: the Talk page with one big mic button and a Hands-free switch, listening with an End button, Kairo speaking its answer to \"What's on this afternoon?\", Kairo waiting for a double tap to send a WhatsApp message, and the Glance page with the next events.", caption: "On the watch: tap once and talk hands-free, hear the answer, allow a message with a double tap, and glance at the day.", width: 2000, height: 640 },
     ],
     screensNote: "A local copy with made-up people, chats and meals.",
     imageAlt: "Azure illustration of an astronaut on a rock talking to a floating drop of liquid glass that glows like a voice orb",

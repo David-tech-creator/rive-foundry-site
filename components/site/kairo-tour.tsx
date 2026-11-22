@@ -17,6 +17,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Voice",
         body: [
           "A tap on the orb and we talk, and it can check my calendar or write a message mid-sentence. On the iPhone a talk is a real phone call: it keeps going with the screen locked, in my pocket, it sits in the Dynamic Island, I end it from my AirPods, and another call puts it on hold.",
+          "There is one voice everywhere: the voice I pick is the one that talks with me, reads my WhatsApp messages and reads the paper, at the speed I set.",
           "It works the other way round too. Kairo can ring me with the morning briefing, and an alarm can wake me straight into it: I tap Brief me and it starts talking.",
         ],
       },
@@ -134,7 +135,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "Kairo in a chat",
         body: [
-          "Next to the mic in every WhatsApp chat sits Kairo's glass button. A tap opens a private panel that only I see, and there I can ask it to draft a reply, sum up the chat, check my calendar before I say yes to Saturday, translate, or anything else. It knows the chat it is in, who said what and in which language, and it has all my usual tools.",
+          "Next to the mic in every WhatsApp chat sits Kairo's glass button. A tap opens a private panel that only I see, and there I can ask it to draft a reply, sum up the chat, check my calendar before I say yes to Saturday, translate, or anything else. It knows the chat it is in, who said what and in which language, and it has just what a chat needs: my calendar, contacts, Dbrain, the web and reminders, which keeps it quick.",
           "A draft comes back as a card with three buttons: Put in box, Send, or Change, where I just say what to change. Kairo never sends a message by itself. Each time I open the panel it starts from a clean slate, and it gets ready the moment it opens, so my first question never waits for it to start. And if I hold the button instead of tapping, I ask out loud and hear the answer read back.",
         ],
       },
@@ -177,7 +178,9 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "Apple Watch",
         body: [
-          "A small app of its own on my Apple Watch Ultra that works over cellular with the phone at home. Tap, talk, and Kairo answers out loud. It also has a glance at my day, approvals I can allow from the wrist, complications, and Talk on the Action button.",
+          "A small app of its own on my Apple Watch Ultra. It talks to my server over its own connection, so it works on a run with the phone at home.",
+          "One tap starts a conversation, hands-free: the watch hears when I stop talking, Kairo answers out loud and listens again, until I stay quiet. When I run, cycle or walk, it keeps its answers to a sentence or two.",
+          "When Kairo needs my go-ahead, say to send a WhatsApp reply I dictated, it tells me, and a double tap of thumb and finger allows it. My voice alone never approves anything. There is also a glance at my day, complications, and Talk on the Action button.",
         ],
       },
       {
@@ -195,6 +198,12 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Two spaces",
         body: [
           "Personal and Business, with one switch at the top. Each space has its own mailboxes, WhatsApp account, chats, drafts, goals and memories.",
+        ],
+      },
+      {
+        title: "Undo",
+        body: [
+          "A deleted chat, memory or routine can be brought back for five seconds.",
         ],
       },
       {
