@@ -372,6 +372,7 @@ export const PRODUCTS: Product[] = [
       "Kairo inside every WhatsApp chat, in a private panel",
       "Messages read aloud in my AirPods",
       "Voice as a real phone call, with the screen locked",
+      "Kairo in the car, by voice through CarPlay",
       "A native iPhone app and an Apple Watch app",
       "Approvals on the Lock Screen, with Face ID",
       "Meals from a photo, with numbers from real nutrition tables",
@@ -967,6 +968,7 @@ export const EDGES: Edge[] = [
  * with the month they happened; dates match `started` on the products.
  */
 export const MISSION_LOG: Array<{ date: string; label: string; text: string; href?: string }> = [
+  { date: "2026-11-22", label: "Nov 2026", text: "Apple approved Kairo as a CarPlay voice app, so I now talk to it while I drive.", href: "/work/kairo" },
   { date: "2026-11-21", label: "Nov 2026", text: "Made Kairo a fully native iPhone app, with an Apple Watch app, approvals on the Lock Screen and WhatsApp read aloud in my AirPods, and put Kairo inside every WhatsApp chat, with live dictation and quick jobs on a fast OpenAI model.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Gave my private assistant its own name, Kairo, with an iPhone app, live WhatsApp and a voice that works with the screen locked.", href: "/work/kairo" },
   { date: "2026-11", label: "Nov 2026", text: "Launched FDE Club, a community for forward deployed engineers in Switzerland, built by 122 AI agents.", href: "/work/fde-club" },

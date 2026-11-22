@@ -107,6 +107,12 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         ],
       },
       {
+        title: "Contacts",
+        body: [
+          "Dbrain keeps my iPhone contacts up to date. Once a day it adds the people I am really in touch with, both ways, from mail and WhatsApp. Anyone it is unsure about waits for me on a short review page: an email address with no name, a name that matches a card I already have but no number. One card per person, and I either add them, typing the name where one is missing, or skip them for good.",
+        ],
+      },
+      {
         title: "Saved for later",
         body: [
           "One library for every link I want to come back to, filled from my iPhone, a bookmarklet on my Mac and Kairo itself. Each save is summarised and filed in Dbrain, so Kairo can find it again when it matters.",
@@ -120,7 +126,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "WhatsApp",
         body: [
-          "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, videos, voice notes with transcripts, replies and reactions. It behaves like the WhatsApp I know. I hold the mic for a voice note, slide away to cancel or up to lock it, and swipe a message to reply to it. Opening a chat reads it, blue ticks included, and I can mute a chat in Kairo without touching WhatsApp.",
+          "My personal and my business WhatsApp live inside Kairo: every chat and group, photos, videos, voice notes with transcripts, replies and reactions. It behaves like the WhatsApp I know. I hold the mic for a voice note, slide away to cancel or up to lock it, and swipe a message to reply to it. Opening a chat reads it, blue ticks included, and I can mute a chat in Kairo without touching WhatsApp. The chat list works the same way: All, Unread, Favourites and Groups sit right under the search field, my WhatsApp favourites in their own order, and a community is one row that opens onto its groups.",
           "Dictation works like in the Claude app: the words appear while I speak, and X throws them away, Stop leaves them in the box and Send sends. Kairo works out the chat's language from its messages and shows it as a small tag I can tap to switch. When I stop, it tidies the words into the message I meant, in the way I write in that chat. And when someone wrote last, up to three short replies sit above the box; a tap puts one in, it never sends.",
           "It can read my messages to me too. With AirPods in, a new message is spoken in Kairo's voice as the notification itself: \"Anna says: running ten minutes late\". Otherwise there is Play on the notification, or \"Read my messages\" for every unread chat in a row, and I can answer by voice.",
         ],
@@ -129,7 +135,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
         title: "Kairo in a chat",
         body: [
           "Next to the mic in every WhatsApp chat sits Kairo's glass button. A tap opens a private panel that only I see, and there I can ask it to draft a reply, sum up the chat, check my calendar before I say yes to Saturday, translate, or anything else. It knows the chat it is in, who said what and in which language, and it has all my usual tools.",
-          "A draft comes back as a card with three buttons: Put in box, Send, or Change, where I just say what to change. Kairo never sends a message by itself. Each time I open the panel it starts from a clean slate. And if I hold the button instead of tapping, I ask out loud and hear the answer read back.",
+          "A draft comes back as a card with three buttons: Put in box, Send, or Change, where I just say what to change. Kairo never sends a message by itself. Each time I open the panel it starts from a clean slate, and it gets ready the moment it opens, so my first question never waits for it to start. And if I hold the button instead of tapping, I ask out loud and hear the answer read back.",
         ],
       },
       {
@@ -177,7 +183,7 @@ const GROUPS: Array<{ title: string; parts: Part[] }> = [
       {
         title: "In the car",
         body: [
-          "I have asked Apple for CarPlay as a voice app, so I can talk to Kairo while I drive. That request is still pending.",
+          "Kairo is a CarPlay voice app. I tap it on the car's screen and we are talking: the same voice as on the phone, with my calendar, mail and messages, and answers kept short because I am driving. The screen shows only the drop of glass and one word for what it is doing, listening, thinking or speaking, with Mute and End, because Apple allows no text or pictures in the car. What we said ends up as a chat I can read later.",
         ],
       },
     ],

@@ -27,7 +27,7 @@ const PARTS: Array<{ title: string; body: string[] }> = [
     body: [
       "Two small bridges run next to Kairo on the same server, one for my personal number and one for WhatsApp Business. Kairo reads their chats and gets every new message the moment it arrives, which is what keeps the page live. Opening a chat marks it read on WhatsApp itself, and so do messages that arrive while it is open.",
       "For dictation, the app streams my voice as small audio frames over a WebSocket to Kairo, which relays them to OpenAI's realtime transcription, so the OpenAI key never leaves my server. Before it starts, Kairo reads the chat's recent messages and, when one language clearly leads, tells the transcriber to expect it; otherwise OpenAI detects it. As soon as the words settle, they go to the fast model for the tidy.",
-      "Kairo in a chat is an ordinary Kairo session, one per WhatsApp chat, titled after it and kept in the right space. Each question goes in with the chat's last 40 messages, its name, whether it is a group and its language, but only my question is saved in the record. That session gets one extra tool, whatsapp_draft, which shows the draft as a card in the panel, and its WhatsApp sending tools are switched off, so the only way a message leaves is my tap on Send. Any other tool that reaches people still asks first. The session stays silent: no notifications, no unread marks, no Live Activity.",
+      "Kairo in a chat is an ordinary Kairo session, one per WhatsApp chat, titled after it and kept in the right space. Each question goes in with the chat's last 40 messages, its name, whether it is a group and its language, but only my question is saved in the record. That session gets one extra tool, whatsapp_draft, which shows the draft as a card in the panel, and its WhatsApp sending tools are switched off, so the only way a message leaves is my tap on Send. Any other tool that reaches people still asks first. The session stays silent: no notifications, no unread marks, no Live Activity. Opening the panel already starts that session on the server, which saves about a second on the first question.",
     ],
   },
   {
@@ -42,6 +42,7 @@ const PARTS: Array<{ title: string; body: string[] }> = [
     body: [
       "Voice mode is a realtime model doing the talking, OpenAI or Gemini Live, and handing every real question to the chat's Claude session. In the iPhone app the call runs natively over WebRTC, and LiveCommunicationKit makes it a real call to the phone, which is what keeps it going with the screen locked. For the briefing, Kairo sends a VoIP push that rings like a call, and AlarmKit does the waking.",
       "The watch can't hold a WebRTC call for long, so it does push-to-talk instead: it records a short clip, sends it over plain HTTPS, and plays back Kairo's spoken answer.",
+      "In the car, Kairo uses Apple's CarPlay category for voice conversation apps: a single Voice Control screen that follows the same call's state, with no text, no pictures and no system call screen on top of it.",
       "The orb you talk to is a drop of glass rendered live: Metal in the app, WebGL in the browser, at 60 frames a second, moving with my voice and with Kairo's.",
     ],
   },
