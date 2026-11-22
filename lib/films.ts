@@ -27,7 +27,7 @@ export type Film = {
    * A second, shorter film further down the page (for example the product's own
    * website). Files: film-<name>.mp4, film-<name>-720.mp4, film-<name>-poster.webp.
    */
-  second?: { name: string; title: string; seconds: number; description: string; note?: string }
+  second?: { name: string; title: string; seconds: number; description: string; note?: string; smallAspect?: string }
 }
 
 export const FILM_SIZE = { width: 1600, height: 1000 } as const
@@ -70,6 +70,15 @@ export const FILMS: Record<string, Film> = {
     note: "Filmed on a local copy with made-up people, chats and meals. The draft is a real one, written by Claude from the chat.",
     published: "2026-11-21",
     smallAspect: PHONE_CROP,
+    second: {
+      name: "whatsapp",
+      title: "WhatsApp in Kairo",
+      seconds: 13,
+      description:
+        "WhatsApp inside the Kairo iPhone app, on three phones: the chat list switches between All, Unread, Favourites and Groups and opens a community onto its groups; a message is dictated live, the words appearing as they are spoken, then tidied; and Kairo, asked in its private panel, checks the calendar and drafts the reply as a card with Put in box, Change and Send.",
+      note: "Filmed in the iPhone simulator with made-up people and chats. Nothing is sent until I tap Send.",
+      smallAspect: PHONE_CROP,
+    },
   },
   lightbox: {
     slug: "lightbox",

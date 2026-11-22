@@ -269,7 +269,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                     {film.second.title}
                   </h2>
                   <div className="mt-6">
-                    <ProductFilm {...filmPaths(p.slug, film.second.name)} label={film.second.description} width={FILM_SIZE.width} height={FILM_SIZE.height} />
+                    <ProductFilm {...filmPaths(p.slug, film.second.name)} label={film.second.description} width={FILM_SIZE.width} height={FILM_SIZE.height} smallAspect={film.second.smallAspect} />
                   </div>
                   {film.second.note ? <p className="mt-3 text-sm text-muted-foreground">{film.second.note}</p> : null}
                 </section>
